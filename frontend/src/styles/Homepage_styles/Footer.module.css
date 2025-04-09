@@ -1,0 +1,24 @@
+.footer {
+    background-color: #fdaf39;
+    /* color: #ffffff; */
+    text-align: center;
+    padding: 2px 0;
+    font-size: 14px;
+    position: relative;
+    color: #ffffff;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+    /* border-top: 1px solid #333; */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer p {
+    margin: 5px 0;
+    color: #ffffff;
+}
+
+.footer strong {
+    color: #514a4a;
+
+}

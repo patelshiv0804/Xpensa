@@ -1,0 +1,25 @@
+.contact_us h1 {
+    color: #514a4a;
+    text-align: center;
+}
+
+.contact_us {
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* color: #514a4a; */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border: 3px solid #FDAF39;
+    border-radius: 15px;
+    padding: 50px;
+    width: fit-content;
+}

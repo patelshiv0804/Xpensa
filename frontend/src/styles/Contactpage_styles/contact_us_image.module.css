@@ -1,0 +1,19 @@
+.image {
+    width: 400px;
+}
+
+.icons {
+    display: flex;
+    gap: 40px;
+    margin-top: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    width: 45px;
+}
+
+.icon:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,17 @@
+.logo {
+
+    align-items: center;
+    display: flex;
+    gap: 5px;
+}
+
+.logo_size {
+    /* height: 45px; */
+    width: 35px;
+    gap: 6px;
+}
+
+.logo_name {
+    font-size: 23px;
+    color: #514a4a;
+}

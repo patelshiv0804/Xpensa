@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Report</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+  <style>
+     @media print {
+      @page {
+        margin: 40px 20px;
+      }
+      body {
+        margin: 0;
+      }
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf7f1;
+      color: #514A4A;
+      margin: 40px;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      color: #514A4A;
+    }
+
+    .section {
+      margin-top: 20px;
+      background: #FFF3E0;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #FDAF39;
+      color: white;
+    }
+
+  canvas {
+  max-width: 800px;
+  margin: auto;
+  height: 450px; /* increase to give more room for labels */
+  display: block;
+}
+
+
+    /* Centered Header */
+    .report-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .app-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #514A4A;
+    }
+
+    /* Footer fixed for every page */
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      right: 40px;
+      font-size: 12px;
+      color: #514A4A;
+    }
+    .page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Centered logo + app name -->
+  <div class="report-header">
+    <img src="{{imageSrc}}" alt="Report Header Image" class="logo-img" />
+    <span class="app-name">Xpensa | Expense Report</span>
+  </div>
+  
+
+
+  <div class="section">
+    <h3>Total Expenses: ₹{{totalAmount}}</h3>
+  </div>
+
+  <div class="section">
+    <h3>Top Spending Categories</h3>
+    <ul>
+      {{#each topCategories}}
+        <li>{{category}}: ₹{{amount}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Category-wise Expense Distribution</h3>
+    <canvas id="expenseChart"></canvas>
+  </div>
+
+  <div class="section page-break">
+    <h3>Expense Breakdown</h3>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Amount (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each breakdown}}
+          <tr>
+            <td>{{date}}</td>
+            <td>{{category}}</td>
+            <td>{{description}}</td>
+            <td>{{amount}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer shown on every page -->
+  <div style="height: 60px;"></div>
+  <div class="footer">Powered by SKV</div>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById('expenseChart').getContext('2d');
+
+    const labels = {{{chartLabels}}}; // e.g., ['Education', 'Savings', 'Transportation', ...]
+    const values = {{{chartData}}};   // e.g., [22, 9, 26, ...]
+
+    const total = values.reduce((a, b) => a + b, 0);
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: [
+          '#4CAF50',  // Education
+          '#36A2EB',  // Savings
+          '#FDAF39',  // Transportation
+          '#FF9800',  // Groceries
+          '#9C27B0',  // Utilities
+          '#FF6384',  // Entertainment
+          '#8BC34A'   // Rent
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    const options = {
+  responsive: true,
+  layout: {
+    padding: 40, // adds space around the chart to avoid clipping
+  },
+  plugins: {
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        font: {
+          size: 13
+        },
+        color: '#514A4A'
+      }
+    },
+    datalabels: {
+      color: '#000',
+      font: {
+        weight: 'bold',
+        size: 13
+      },
+      align: 'end',
+      anchor: 'end',
+      offset: 16,
+      clamp: true, // prevents labels from overflowing the canvas
+      formatter: function (value, context) {
+        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+        const label = context.chart.data.labels[context.dataIndex];
+        const percent = ((value / total) * 100).toFixed(0);
+        return `${label}: ${percent}%`;
+      }
+    },
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          const label = context.label || '';
+          const value = context.parsed;
+          const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+          const percent = ((value / total) * 100).toFixed(2);
+          return `${label}: ₹${value} (${percent}%)`;
+        }
+      }
+    }
+  }
+};
+
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      options: options,
+      plugins: [ChartDataLabels]
+    });
+  });
+</script>
+
+
+  
+
+</body>
+</html>

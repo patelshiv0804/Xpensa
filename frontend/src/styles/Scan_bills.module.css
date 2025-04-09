@@ -1,0 +1,344 @@
+/* .main_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FFFAF5;
+}
+
+.outer_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(255, 166, 88, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    border: 3px dashed #fdaf39;
+    padding: 60px;
+    gap: 15px;
+    margin-top: 100px;
+    border-radius: 15px;
+}
+
+.image {
+    width: 90px;
+}
+
+.text {
+
+    font-size: 30px;
+    font-weight: 500;
+} */
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.contentContainer {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.scanContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.uploadArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 166, 88, 0.5);
+    border: 2px dashed #fdaf39;
+    border-radius: 8px;
+    padding: 3rem 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    height: 300px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.uploadArea:hover {
+    border-color: #fc741a;
+    /* background-color: rgba(74, 144, 226, 0.03); */
+}
+
+.uploadIcon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.uploadText {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.uploadSubtext {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.fileInput {
+    display: none;
+}
+
+.previewContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.preview {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.changeButton {
+    position: absolute;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.changeButton:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.processButton {
+    background-color: #fdaf39;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s;
+}
+
+.processButton:hover {
+    background-color: #fc741a;
+}
+
+.processButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.errorMessage {
+    color: #e74c3c;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.resultsContainer {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.resultsTitle {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.formGroup {
+    width: 100%;
+    margin-bottom: 1.2rem;
+}
+
+.formLabel {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.formInput,
+.formSelect {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.formInput:focus,
+.formSelect:focus {
+    border-color: #fdaf39;
+    outline: none;
+}
+
+.amountInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currencySymbol {
+    position: absolute;
+    left: 12px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.amountInput {
+    width: 100%;
+    padding: 0.8rem;
+    padding-left: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.amountInput:focus {
+    border-color: #fdaf39;
+    outline: none;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.cancelButton {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 48%;
+    transition: background-color 0.3s;
+}
+
+.cancelButton:hover {
+    background-color: #d0d0d0;
+}
+
+.categorizeButton {
+    background-color: #fdaf39;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 48%;
+    transition: background-color 0.3s;
+}
+
+.categorizeButton:hover {
+    background-color: #fc741a;
+}
+
+.categorizeButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.successMessage {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .contentContainer {
+        padding: 1rem;
+    }
+
+    .scanContainer {
+        padding: 1.5rem;
+    }
+
+    .uploadArea {
+        padding: 2rem 1rem;
+        height: 250px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .formInput,
+    .formSelect,
+    .amountInput {
+        padding: 0.7rem;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+    }
+
+    .cancelButton,
+    .categorizeButton {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}

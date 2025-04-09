@@ -1,0 +1,243 @@
+ * {
+     margin: 0;
+     padding: 0;
+ }
+
+ .navbar {
+     display: flex;
+     list-style: none;
+     gap: 40px;
+     align-items: center;
+     font-weight: 600;
+     font-size: 19px;
+     height: 40px;
+     background-color: #FDAF39;
+     padding: 10px 20px;
+ }
+
+ .home:hover {
+     cursor: pointer;
+ }
+
+ .about:hover {
+     cursor: pointer;
+ }
+
+ .contact:hover {
+     cursor: pointer;
+ }
+
+ .login:hover {
+     cursor: pointer;
+ }
+
+ .half_navbar {
+     margin-left: 25px;
+     margin-right: 0;
+     margin-inline-start: auto;
+     display: flex;
+     gap: 30px;
+     align-items: center;
+ }
+
+ .notification_icon {
+     background: #272727;
+     display: flex;
+     border-radius: 50%;
+     align-items: center;
+     justify-content: center;
+     padding: 3px;
+ }
+
+ .notification {
+     width: 29px;
+ }
+
+ .notification:hover {
+     cursor: pointer;
+ }
+
+ .tool {
+     display: flex;
+     align-items: center;
+ }
+
+ .tool:hover {
+     cursor: pointer;
+
+ }
+
+ .button {
+     width: 100px;
+     font-size: 18px;
+     border-radius: 5px;
+     height: 30px;
+ }
+
+
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: scale(0.95);
+     }
+
+     to {
+         opacity: 1;
+         transform: scale(1);
+     }
+ }
+
+ .modal_overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background: rgba(0, 0, 0, 0.5);
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 999;
+     animation: fadeIn 0.3s ease-in-out;
+
+ }
+
+
+ .modal {
+     background: #fff;
+     padding: 25px 35px;
+     border-radius: 12px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+
+     text-align: center;
+     transform: scale(0.9);
+     animation: popIn 0.3s ease-in-out forwards;
+ }
+
+ .modal_buttons {
+     margin-top: 20px;
+     display: flex;
+     justify-content: center;
+     gap: 12px;
+ }
+
+ .confirm_btn {
+     background-color: #ffb33f;
+     color: #fff;
+     padding: 12px 25px;
+     border: none;
+     border-radius: 6px;
+     cursor: pointer;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .cancel_btn {
+     background-color: #fff0e2;
+     color: #333;
+     padding: 12px 25px;
+     border: none;
+     border-radius: 6px;
+     cursor: pointer;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .confirm_btn:hover {
+     background-color: #ff8c00;
+     transform: scale(1.05);
+     box-shadow: 0 5px 0px rgb(0 0 0 / 40%);
+ }
+
+ .cancel_btn:hover {
+     background-color: #f2d1b8;
+     transform: scale(1.05);
+     box-shadow: 0 5px 0px rgb(0 0 0 / 40%);
+ }
+
+ .confirm_btn:active,
+ .cancel_btn:active {
+     transform: scale(0.95);
+     box-shadow: none;
+ }
+
+ @keyframes popIn {
+     0% {
+         transform: scale(0.9);
+         opacity: 0;
+     }
+
+     100% {
+         transform: scale(1);
+         opacity: 1;
+     }
+ }
+
+
+ @keyframes fadeIn {
+     0% {
+         background: rgba(0, 0, 0, 0);
+     }
+
+     100% {
+         background: rgba(0, 0, 0, 0.5);
+     }
+ }
+
+ .notification_popup {
+     position: absolute;
+     top: 60px;
+     right: 20px;
+     width: 450px;
+     background-color: #fff;
+     border-radius: 8px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     z-index: 1000;
+ }
+
+ .notification_header {
+     color: #ff9a00;
+     padding: 12px;
+     border-bottom: 1px solid #eee;
+     font-size: 16px;
+     font-weight: bold;
+ }
+
+ .notification_list {
+     max-height: 300px;
+     overflow-y: auto;
+ }
+
+ .notification_item {
+     color: #514a4a;
+     padding: 10px 12px;
+     border-bottom: 1px solid #f1f1f1;
+ }
+
+ .notification_date {
+     color: #ff9800;
+     font-weight: 500;
+     font-size: small;
+ }
+
+ .notification_item:hover {
+     background-color: #f9f9f9;
+ }
+
+ .notification_footer {
+     padding: 12px;
+     text-align: right;
+     border-top: 1px solid #eee;
+ }
+
+ .close_btn {
+     background-color: #fdaf39;
+     color: #fff;
+     border: none;
+     padding: 6px 12px;
+     border-radius: 4px;
+     cursor: pointer;
+ }
+
+ .close_btn:hover {
+     background-color: #fc953a;
+ }

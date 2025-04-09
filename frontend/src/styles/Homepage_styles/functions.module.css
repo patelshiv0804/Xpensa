@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.card {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 220px;
+    width: 270px;
+    background-color: #FFF3E0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+    font-family: 'Montserrat Alternates', sans-serif;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.card div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image_outer {
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.image {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 25px;
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    /* Slightly dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* 🟠 Centered login modal */
+.modal {
+    background-color: #FFFAF5;
+    width: 850px;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    border-radius: 28px;
+    /* padding: 15px; */
+    gap: 80px;
+    position: relative;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 🔴 Close button */
+.closeButton {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    background: rgb(253 175 57);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.closeButton:hover {
+    background: rgb(200, 0, 0);
+}
+
+/* 🟡 Smooth fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

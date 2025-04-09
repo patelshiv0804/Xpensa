@@ -1,0 +1,13 @@
+.about_us h1 {
+    color: #514a4a;
+    text-align: center;
+    margin: 40px;
+}
+
+.container {
+    display: flex;
+    gap: 45px;
+    margin: 100px;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,48 @@
+.container {
+    border: 2px solid #FDAF39;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.heading {
+    text-align: center;
+    color: #514a4a;
+    margin-bottom: 15px;
+}
+
+p {
+    margin: 0;
+    color: #514a4a;
+}
+
+.input {
+    width: 400px;
+    height: 40px;
+    border: 2px solid #FDAF39;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #514a4a;
+    padding-left: 10px;
+}
+
+.outer_button {
+    text-align: center;
+}
+
+.button {
+    background: #FDAF39;
+    color: #FFFAF5;
+    border: none;
+    border-radius: 5px;
+    width: 140px;
+    height: 40px;
+    font-size: 19px;
+}
+
+.inner_container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 20px;
+    font-weight: 500;
+}

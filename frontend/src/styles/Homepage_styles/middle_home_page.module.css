@@ -1,0 +1,26 @@
+.middle {
+    font-size: 64px;
+    justify-content: center;
+    display: grid;
+    margin-top: 130px;
+}
+
+.firstline {
+    display: flex;
+    font-weight: 600;
+    color: #514A4A;
+}
+
+.first_word {
+    color: #FFA658;
+}
+
+.secondline {
+    display: flex;
+    font-weight: 600;
+    color: #514A4A;
+}
+
+.second_word {
+    color: #FFA658;
+}

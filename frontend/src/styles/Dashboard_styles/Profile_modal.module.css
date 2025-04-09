@@ -1,0 +1,208 @@
+/* Modal Overlay - covers the entire screen */
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal_content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.modal_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal_header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.close_button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.close_button:hover {
+    color: #FF9954;
+}
+
+/* Loading and Error States */
+.loading,
+.error {
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.error {
+    color: #e74c3c;
+}
+
+/* Profile Form */
+.profile_form {
+    padding: 20px;
+}
+
+/* Profile Preview - Avatar Section */
+.profile_preview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.avatar_container {
+    position: relative;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview_avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #FF9954;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.change_photo {
+    width: 110px;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #FF9954;
+    text-decoration: underline;
+}
+
+.file_input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Form Groups */
+.form_group {
+    margin-bottom: 16px;
+}
+
+.form_group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.text_input,
+.date_input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.text_input:focus,
+.date_input:focus {
+    border-color: #FF9954;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 153, 84, 0.2);
+}
+
+.readonly {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+small {
+    display: block;
+    margin-top: 4px;
+    color: #888;
+    font-size: 12px;
+}
+
+/* Button Group */
+.button_group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.cancel_button {
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cancel_button:hover {
+    background-color: #e0e0e0;
+}
+
+.save_button {
+    padding: 10px 20px;
+    background-color: #FF9954;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save_button:hover {
+    background-color: #FF8134;
+}
+
+.save_button:disabled {
+    background-color: #ffbf8d;
+    cursor: not-allowed;
+}

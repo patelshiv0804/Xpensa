@@ -1,0 +1,56 @@
+.comparison-container {
+    padding: 20px;
+    margin: auto;
+}
+
+.category-card {
+    transition: all 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.comparison-chart {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-data-message {
+    text-align: center;
+    padding: 40px 0;
+    color: #757575;
+}
+
+.period-selector {
+    margin-bottom: 25px;
+}
+
+.add-button {
+
+    background: linear-gradient(to right, #fdaf39, #fc741a);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.add-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(253, 175, 57, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .comparison-chart {
+        height: 300px !important;
+    }
+}

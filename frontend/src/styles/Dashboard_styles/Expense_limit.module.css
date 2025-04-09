@@ -1,0 +1,293 @@
+/* .container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    max-width: 600px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.heading {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.select {
+    width: 200px !important;
+}
+
+.input {
+    width: 150px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.addButton {
+    background-color: #fdaf39;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.actionButtons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.editButton {
+    background-color: #fdaf39;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+.deleteButton {
+    background-color: #fc741a;
+    color: white;
+    border-radius: 5px;
+} */
+
+/* Add these to your Expense_limit.module.css file */
+
+
+
+.tableContainer {
+    overflow-x: auto;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table th {
+    /* background: linear-gradient(to right, #fdaf39, #fc741a);
+    color: white; */
+    background: #f5f5f5;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 16px;
+    text-align: left;
+    letter-spacing: 0.5px;
+}
+
+.table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.table td {
+    padding: 16px;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #fff8ee;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+/* Enhanced input & button styling */
+.input {
+    width: 120px;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.input:focus {
+    border-color: #fdaf39;
+    box-shadow: 0 0 0 3px rgba(253, 175, 57, 0.2);
+    outline: none;
+}
+
+.input::placeholder {
+    color: #aaa;
+}
+
+.actionButtons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.editButton,
+.deleteButton {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editButton {
+    background-color: #fdaf39;
+    color: white;
+}
+
+.editButton:hover {
+    background-color: #f59f20;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(253, 175, 57, 0.3);
+}
+
+.deleteButton {
+    background-color: #fc741a;
+    color: white;
+}
+
+.deleteButton:hover {
+    background-color: #e96709;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(252, 116, 26, 0.3);
+}
+
+.noData {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-style: italic;
+    border: 1px dashed #ddd;
+}
+
+.formGroup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 95%;
+}
+
+.select {
+    flex: 1;
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.select:focus {
+    border-color: #fdaf39;
+    box-shadow: 0 0 0 3px rgba(253, 175, 57, 0.2);
+    outline: none;
+}
+
+.addButton {
+    background: linear-gradient(to right, #fdaf39, #fc741a);
+    color: white;
+
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.addButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(253, 175, 57, 0.3);
+}
+
+/* Container enhancements */
+.container {
+    padding: 20px;
+    background-color: #fdf7f1;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); */
+}
+
+.heading {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.heading:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #fdaf39, #fc741a);
+    border-radius: 2px;
+}
