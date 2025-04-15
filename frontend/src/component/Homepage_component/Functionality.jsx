@@ -31,18 +31,25 @@ export default function Functionality() {
                     onClick={handleScanBillsClick}
                     imagesrc={Scan_bills_logo}
                     text="Scan Bills"
+                    animationSpeed="normal"
                 />
                 <Functions
                     onClick={handleExportExpenditureClick}
                     imagesrc={Export_receipt_logo}
                     text="Export Expenditure"
+                    animationSpeed="slow"
                 />
                 <Functions
                     onClick={handleVisualAnalysisClick}
                     imagesrc={Visual_analysis_logo}
                     text="Visual Analysis"
+                    animationSpeed="slower"
                 />
-                <Functions imagesrc={Budget_alert_logo} text="Budget Alert" />
+                <Functions
+                    imagesrc={Budget_alert_logo}
+                    text="Budget Alert"
+                    animationSpeed="slowest"
+                />
             </div>
         </div>
     );
