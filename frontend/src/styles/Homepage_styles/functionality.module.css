@@ -1,26 +1,3 @@
-/* .prop {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    margin-top: 130px;
-
-    font-weight: 600;
-}
-
-.heading {
-    font-weight: 600;
-    font-size: 35px;
-    color: #514A4A;
-    text-align: center;
-}
-
-.functions {
-    display: flex;
-    gap: 40px;
-    margin-top: 50px;
-    justify-content: center;
-} */
-
 .prop {
     justify-content: center;
     display: flex;
@@ -36,6 +13,59 @@
     font-size: 35px;
     color: #514A4A;
     text-align: center;
+    -webkit-animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+@-webkit-keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes highlight {
+    0% {
+        background-position: -100% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.heading:after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(255, 118, 20, 1) 0%, rgba(224, 93, 93, 1) 50%, rgba(255, 118, 20, 1) 100%);
+    margin: 10px auto 0;
+    background-size: 200% 100%;
+    animation: highlight 3s linear infinite;
 }
 
 .functions {
@@ -46,7 +76,6 @@
     flex-wrap: wrap;
 }
 
-/* Responsive styles */
 @media (max-width: 1200px) {
     .functions {
         gap: 30px;

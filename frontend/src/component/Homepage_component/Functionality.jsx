@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-// import Functions from "./Functions";
 import Functions from "./Functions";
 import styles from "../../styles/Homepage_styles/functionality.module.css";
 import Scan_bills_logo from "../../../logos/scanner.png";
@@ -8,6 +7,7 @@ import Visual_analysis_logo from "../../../logos/analysis1.png";
 import Budget_alert_logo from "../../../logos/alert.png";
 
 export default function Functionality() {
+
     const navigate = useNavigate();
 
     const handleScanBillsClick = () => {

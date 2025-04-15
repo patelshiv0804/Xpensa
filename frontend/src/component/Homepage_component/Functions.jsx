@@ -13,7 +13,6 @@ export default function Functions({ imagesrc, text, onClick, animationSpeed = "n
 
     const navigate = useNavigate();
 
-    // Determine which animation class to use
     const getAnimationClass = () => {
         if (!isVisible) return '';
 
@@ -73,7 +72,7 @@ export default function Functions({ imagesrc, text, onClick, animationSpeed = "n
                 </div>
             </button>
 
-            {/* Modal code remains the same */}
+            
             {showLoginModal && (
                 <div className={styles.overlay} onClick={() => setShowLoginModal(false)}>
                     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
