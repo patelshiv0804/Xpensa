@@ -1,4 +1,4 @@
-.chatbot_overlay {
+/* .chatbot_overlay {
     filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.25));
     position: fixed;
     bottom: 20px;
@@ -19,15 +19,6 @@
     transform: scale(1.1);
 }
 
-/* .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f3f4f6;
-    padding: 20px;
-} */
 
 .chat_container {
     position: fixed;
@@ -100,4 +91,448 @@
 
 .send_button:hover {
     background: #ff9900;
+} */
+
+.chatbot_overlay {
+    filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.25));
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 140px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.chatbot_overlay img {
+    width: 100%;
+    height: auto;
+}
+
+.chatbot_overlay:hover {
+    transform: scale(1.1);
+}
+
+.chat_container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 400px;
+    max-width: calc(100vw - 40px);
+    /* Prevent overflow on small screens */
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    overflow: hidden;
+}
+
+.expanded {
+    width: 400px;
+    height: 450px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chat_header {
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.heading {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin: 0;
+}
+
+.header_buttons {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.expand_button,
+.close_button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s;
+    padding: 4px;
+    /* Increase touch target size */
+}
+
+.expand_button:hover,
+.close_button:hover {
+    color: #000;
+}
+
+.chat_body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat_body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat_body::-webkit-scrollbar-thumb {
+    background-color: #cdcdcd;
+    border-radius: 3px;
+}
+
+.chat_body::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.empty_chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #888;
+}
+
+.messages_container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.message {
+    display: flex;
+    width: 100%;
+}
+
+.user_message {
+    justify-content: flex-end;
+}
+
+.agent_message {
+    justify-content: flex-start;
+}
+
+.message_bubble {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.user_message .message_bubble {
+    background-color: #fdaf39;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.agent_message .message_bubble {
+    background-color: #f1f1f1;
+    color: #333;
+    border-bottom-left-radius: 4px;
+}
+
+.loading_bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    min-width: 50px;
+}
+
+.loading_dots {
+    position: relative;
+    width: 40px;
+    height: 10px;
+}
+
+.loading_dots:before,
+.loading_dots:after,
+.loading_dots span {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #999;
+    animation: loadingDots 1.5s infinite ease-in-out;
+}
+
+.loading_dots:before {
+    left: 0;
+    animation-delay: 0s;
+}
+
+.loading_dots span {
+    left: 16px;
+    animation-delay: 0.15s;
+}
+
+.loading_dots:after {
+    right: 0;
+    animation-delay: 0.3s;
+}
+
+@keyframes loadingDots {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.8);
+    }
+
+    40% {
+        transform: scale(1.2);
+    }
+}
+
+.chat_footer {
+    padding: 15px;
+    border-top: 1px solid #eaeaea;
+    background-color: white;
+    flex-shrink: 0;
+}
+
+.input_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.input_field {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input_field:focus {
+    border-color: #fdaf39;
+}
+
+.send_button {
+    background: #fdaf39;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 40px;
+    /* Ensure consistent width */
+    min-height: 40px;
+    /* Ensure consistent height */
+}
+
+.send_button:hover {
+    background: #ff9900;
+    transform: scale(1.05);
+}
+
+.send_button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Styles for formatted message content */
+.message-heading {
+    margin: 8px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.agent_message .message-heading {
+    color: #333;
+}
+
+.message-list {
+    margin: 8px 0 8px 16px;
+    padding-left: 10px;
+}
+
+.message-list li {
+    margin-bottom: 6px;
+    position: relative;
+}
+
+/* For better list styling */
+.message-list li::before {
+    content: "•";
+    position: absolute;
+    left: -12px;
+    color: #666;
+}
+
+/* Media Queries for Responsive Design */
+
+/* Large tablets and smaller desktop */
+@media screen and (max-width: 1024px) {
+    .chat_container {
+        width: 350px;
+    }
+
+    .expanded {
+        width: 350px;
+        height: 400px;
+    }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+    .chat_container {
+        width: 320px;
+        bottom: 80px;
+    }
+
+    .expanded {
+        height: 380px;
+    }
+
+    .chatbot_overlay {
+        width: 120px;
+    }
+
+    .heading {
+        font-size: 14px;
+    }
+}
+
+/* Large mobile phones */
+@media screen and (max-width: 576px) {
+    .chat_container {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+        bottom: 70px;
+    }
+
+    .expanded {
+        height: 60vh;
+        /* Use viewport height for better mobile experience */
+        max-height: 450px;
+    }
+
+    .chatbot_overlay {
+        width: 100px;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .message_bubble {
+        max-width: 85%;
+        /* Allow bubbles to be wider on small screens */
+    }
+}
+
+/* Small mobile phones */
+@media screen and (max-width: 375px) {
+    .chat_container {
+        bottom: 65px;
+    }
+
+    .chatbot_overlay {
+        width: 80px;
+    }
+
+    .heading {
+        font-size: 14px;
+    }
+
+    .message_bubble {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    .input_field {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .send_button {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 8px;
+    }
+}
+
+
+@media screen and (max-height: 500px) {
+    .chat_container {
+        height: 180px;
+    }
+
+    .expanded {
+        height: 80vh;
+        max-height: 350px;
+    }
+
+    .chatbot_overlay {
+        width: 70px;
+    }
+}
+
+@supports (padding: max(0px)) {
+    .chat_container {
+        padding-bottom: max(15px, env(safe-area-inset-bottom));
+        padding-right: max(20px, env(safe-area-inset-right));
+    }
+
+    .chatbot_overlay {
+        bottom: max(20px, env(safe-area-inset-bottom));
+        right: max(20px, env(safe-area-inset-right));
+    }
+}
+
+@media (hover: hover) {
+    .send_button:hover {
+        background: #ff9900;
+        transform: scale(1.05);
+    }
+}
+
+/* For devices without hover capability (touch screens) */
+@media (hover: none) {
+    .send_button:active {
+        background: #ff9900;
+    }
+
+    .chatbot_overlay:active {
+        transform: scale(1.05);
+    }
 }
