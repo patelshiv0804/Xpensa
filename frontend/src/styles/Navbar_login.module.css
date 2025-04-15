@@ -1,243 +1,353 @@
- * {
-     margin: 0;
-     padding: 0;
- }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
- .navbar {
-     display: flex;
-     list-style: none;
-     gap: 40px;
-     align-items: center;
-     font-weight: 600;
-     font-size: 19px;
-     height: 40px;
-     background-color: #FDAF39;
-     padding: 10px 20px;
- }
+.navbar {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    font-weight: 600;
+    font-size: 19px;
+    height: auto;
+    background-color: #FDAF39;
+    padding: 10px 20px;
+    position: relative;
+}
 
- .home:hover {
-     cursor: pointer;
- }
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    margin-left: auto;
+}
 
- .about:hover {
-     cursor: pointer;
- }
+.hamburger span {
+    height: 3px;
+    width: 100%;
+    background-color: #272727;
+    border-radius: 10px;
+}
 
- .contact:hover {
-     cursor: pointer;
- }
+.half_navbar {
+    margin-left: 25px;
+    margin-right: 0;
+    margin-inline-start: auto;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
 
- .login:hover {
-     cursor: pointer;
- }
+.nav_item {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 
- .half_navbar {
-     margin-left: 25px;
-     margin-right: 0;
-     margin-inline-start: auto;
-     display: flex;
-     gap: 30px;
-     align-items: center;
- }
+.nav_item:hover {
+    color: #ffffff;
+}
 
- .notification_icon {
-     background: #272727;
-     display: flex;
-     border-radius: 50%;
-     align-items: center;
-     justify-content: center;
-     padding: 3px;
- }
+.nav_actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
- .notification {
-     width: 29px;
- }
+.notification_icon {
+    background: #272727;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
 
- .notification:hover {
-     cursor: pointer;
- }
+.notification_icon:hover {
+    transform: scale(1.1);
+}
 
- .tool {
-     display: flex;
-     align-items: center;
- }
+.notification {
+    width: 29px;
+}
 
- .tool:hover {
-     cursor: pointer;
+.button {
+    width: 100px;
+    font-size: 18px;
+    border-radius: 5px;
+    height: 35px;
+    cursor: pointer;
+}
 
- }
+/* Mobile Menu */
+.mobile_menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #FDAF39;
+    padding: 15px;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease-in-out;
+}
 
- .button {
-     width: 100px;
-     font-size: 18px;
-     border-radius: 5px;
-     height: 30px;
- }
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
- @keyframes fadeIn {
-     from {
-         opacity: 0;
-         transform: scale(0.95);
-     }
+.mobile_nav_items {
+    list-style: none;
+    margin-bottom: 15px;
+}
 
-     to {
-         opacity: 1;
-         transform: scale(1);
-     }
- }
+.mobile_nav_items li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
 
- .modal_overlay {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100vw;
-     height: 100vh;
-     background: rgba(0, 0, 0, 0.5);
+.mobile_nav_items li:last-child {
+    border-bottom: none;
+}
 
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     z-index: 999;
-     animation: fadeIn 0.3s ease-in-out;
+.mobile_actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 
- }
+.mobile_icon_group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 
+.mobile_button {
+    width: 100% !important;
+    margin-top: 10px;
+}
 
- .modal {
-     background: #fff;
-     padding: 25px 35px;
-     border-radius: 12px;
-     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+}
 
-     text-align: center;
-     transform: scale(0.9);
-     animation: popIn 0.3s ease-in-out forwards;
- }
+.modal {
+    background: #fff;
+    padding: 25px 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    animation: popIn 0.3s ease-in-out forwards;
+}
 
- .modal_buttons {
-     margin-top: 20px;
-     display: flex;
-     justify-content: center;
-     gap: 12px;
- }
+.modal_buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
 
- .confirm_btn {
-     background-color: #ffb33f;
-     color: #fff;
-     padding: 12px 25px;
-     border: none;
-     border-radius: 6px;
-     cursor: pointer;
-     transition: all 0.3s ease-in-out;
- }
+.confirm_btn {
+    background-color: #ffb33f;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
 
- .cancel_btn {
-     background-color: #fff0e2;
-     color: #333;
-     padding: 12px 25px;
-     border: none;
-     border-radius: 6px;
-     cursor: pointer;
-     transition: all 0.3s ease-in-out;
- }
+.cancel_btn {
+    background-color: #fff0e2;
+    color: #333;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
 
- .confirm_btn:hover {
-     background-color: #ff8c00;
-     transform: scale(1.05);
-     box-shadow: 0 5px 0px rgb(0 0 0 / 40%);
- }
+.confirm_btn:hover {
+    background-color: #ff8c00;
+    transform: scale(1.05);
+    box-shadow: 0 5px 0px rgba(0, 0, 0, 0.4);
+}
 
- .cancel_btn:hover {
-     background-color: #f2d1b8;
-     transform: scale(1.05);
-     box-shadow: 0 5px 0px rgb(0 0 0 / 40%);
- }
+.cancel_btn:hover {
+    background-color: #f2d1b8;
+    transform: scale(1.05);
+    box-shadow: 0 5px 0px rgba(0, 0, 0, 0.4);
+}
 
- .confirm_btn:active,
- .cancel_btn:active {
-     transform: scale(0.95);
-     box-shadow: none;
- }
+.confirm_btn:active,
+.cancel_btn:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
 
- @keyframes popIn {
-     0% {
-         transform: scale(0.9);
-         opacity: 0;
-     }
+@keyframes popIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
 
-     100% {
-         transform: scale(1);
-         opacity: 1;
-     }
- }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
+@keyframes fadeIn {
+    0% {
+        background: rgba(0, 0, 0, 0);
+    }
 
- @keyframes fadeIn {
-     0% {
-         background: rgba(0, 0, 0, 0);
-     }
+    100% {
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
 
-     100% {
-         background: rgba(0, 0, 0, 0.5);
-     }
- }
+.notification_popup {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 450px;
+    max-width: 90vw;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeInNotification 0.3s ease;
+}
 
- .notification_popup {
-     position: absolute;
-     top: 60px;
-     right: 20px;
-     width: 450px;
-     background-color: #fff;
-     border-radius: 8px;
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-     z-index: 1000;
- }
+@keyframes fadeInNotification {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 
- .notification_header {
-     color: #ff9a00;
-     padding: 12px;
-     border-bottom: 1px solid #eee;
-     font-size: 16px;
-     font-weight: bold;
- }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
- .notification_list {
-     max-height: 300px;
-     overflow-y: auto;
- }
+.notification_list {
+    max-height: 300px;
+    overflow-y: auto;
+}
 
- .notification_item {
-     color: #514a4a;
-     padding: 10px 12px;
-     border-bottom: 1px solid #f1f1f1;
- }
+.notification_item {
+    color: #514a4a;
+    padding: 10px 12px;
+    border-bottom: 1px solid #f1f1f1;
+}
 
- .notification_date {
-     color: #ff9800;
-     font-weight: 500;
-     font-size: small;
- }
+.notification_date {
+    color: #ff9800;
+    font-weight: 500;
+    font-size: small;
+    display: block;
+    margin-top: 5px;
+}
 
- .notification_item:hover {
-     background-color: #f9f9f9;
- }
+.notification_item:hover {
+    background-color: #f9f9f9;
+}
 
- .notification_footer {
-     padding: 12px;
-     text-align: right;
-     border-top: 1px solid #eee;
- }
+.notification_footer {
+    padding: 12px;
+    text-align: right;
+    border-top: 1px solid #eee;
+}
 
- .close_btn {
-     background-color: #fdaf39;
-     color: #fff;
-     border: none;
-     padding: 6px 12px;
-     border-radius: 4px;
-     cursor: pointer;
- }
+.close_btn {
+    background-color: #fdaf39;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
- .close_btn:hover {
-     background-color: #fc953a;
- }
+.close_btn:hover {
+    background-color: #fc953a;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .desktop_menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .notification_popup {
+        top: 60px;
+        right: 50%;
+        transform: translateX(50%);
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .mobile_menu {
+        display: none;
+    }
+}
+
+/* For very small devices */
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
+    .modal {
+        padding: 20px;
+    }
+
+    .modal_buttons {
+        flex-direction: column;
+    }
+
+    .modal_buttons button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .notification_item p {
+        font-size: 14px;
+    }
+}

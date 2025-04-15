@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .navbar {
@@ -10,23 +11,16 @@
     align-items: center;
     font-weight: 600;
     font-size: 19px;
-    height: 40px;
+    height: auto;
+    min-height: 60px;
     background-color: #FDAF39;
     padding: 10px 20px;
+    position: relative;
 }
 
-.home:hover {
-    cursor: pointer;
-}
-
-.about:hover {
-    cursor: pointer;
-}
-
-.contact:hover {
-    cursor: pointer;
-}
-
+.home:hover,
+.about:hover,
+.contact:hover,
 .login:hover {
     cursor: pointer;
 }
@@ -39,7 +33,6 @@
     gap: 30px;
     justify-content: center;
     align-items: center;
-
 }
 
 .button {
@@ -49,6 +42,35 @@
     height: 30px;
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+    z-index: 10;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menuOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -56,34 +78,35 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    /* Slightly dark overlay */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-/* 🟠 Centered login modal */
 .modal {
     background-color: #FFFAF5;
-    width: 850px;
-    height: 550px;
+    width: 90%;
+    max-width: 850px;
+    height: auto;
+    max-height: 90vh;
+    min-height: 350px;
     display: flex;
     align-items: center;
     border-radius: 28px;
-    /* padding: 15px; */
     gap: 80px;
     position: relative;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.5s ease-in-out;
+    overflow-y: auto;
+    padding: 20px;
 }
 
-/* 🔴 Close button */
 .closeButton {
     position: absolute;
-    top: 0px;
+    top: 10px;
     right: 10px;
-    background: rgb(253 175 57);
+    background: rgb(253, 175, 57);
     color: white;
     border: none;
     padding: 8px 12px;
@@ -98,7 +121,6 @@
     background: rgb(200, 0, 0);
 }
 
-/* 🟡 Smooth fade-in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -108,5 +130,70 @@
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .half_navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #fff;
+        flex-direction: column;
+        padding: 80px 20px 30px;
+        transition: right 0.3s ease;
+        z-index: 5;
+        margin: 0;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .half_navbar.show {
+        right: 0;
+    }
+
+    .menuOverlay {
+        display: block;
+    }
+
+    .button {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .modal {
+        padding: 15px;
+        gap: 20px;
+        width: 95%;
+    }
+
+    .closeButton {
+        padding: 6px 10px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .navbar {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .half_navbar {
+        width: 85%;
+        padding: 70px 15px 20px;
     }
 }
