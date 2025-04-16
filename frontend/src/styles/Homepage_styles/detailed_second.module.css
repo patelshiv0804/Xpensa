@@ -2,7 +2,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
+    margin: 100px auto;
+    padding: 0 20px;
+    max-width: 1200px;
+    gap: 40px;
+}
+
+.imageSection,
+.subcontainer {
+    flex: 1;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.imageSection {
+    display: flex;
+    justify-content: center;
+}
+
+.slideInLeft {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slideInRight {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slideOutLeft {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.slideOutRight {
+    opacity: 0;
+    transform: translateX(50px);
 }
 
 .image {
@@ -20,13 +54,17 @@
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-.subcontainer {
+/* .subcontainer {
     height: 245px;
     width: 570px;
     margin-right: 110px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+} */
+
+.subcontainer {
+    max-width: 570px;
 }
 
 .heading {
@@ -34,10 +72,89 @@
     font-weight: 600;
     font-size: 32px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .text {
-    margin-top: 22px;
+    /* margin-top: 22px; */
     font-size: 22px;
     text-align: center;
+    line-height: 1.5;
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: 1000px;
+        gap: 30px;
+    }
+
+    .image {
+        max-width: 380px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        gap: 20px;
+    }
+
+    .image {
+        max-width: 320px;
+    }
+
+    .heading {
+        font-size: 28px;
+    }
+
+    .text {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 60px auto;
+    }
+
+    .imageSection {
+        order: 1;
+        transform: translateY(-30px);
+    }
+
+    .subcontainer {
+        order: 2;
+        transform: translateY(30px);
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 20px;
+    }
+
+    .slideOutLeft {
+        transform: translateY(-30px);
+    }
+
+    .slideOutRight {
+        transform: translateY(30px);
+    }
+
+    .slideInLeft,
+    .slideInRight {
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        margin: 40px auto;
+        padding: 0 15px;
+    }
+
+    .heading {
+        font-size: 24px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
 }
