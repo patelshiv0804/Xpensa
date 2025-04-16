@@ -6,7 +6,7 @@ export default function Sign_up({ setShowLoginModal, setShowSignupModal }) {
     return (
         <div className={styles.container}>
             <div className={styles.signup_image}>
-                <img className={styles.image} src={Signup_img} alt="" />
+                <img className={styles.image} src={Signup_img} alt="Signup illustration" />
             </div>
 
             <GoogleOAuthProvider clientId="320422409970-ldsi80jm4d9jmc33dq0lql91jim97r2o.apps.googleusercontent.com">

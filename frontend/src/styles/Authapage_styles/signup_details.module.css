@@ -1,25 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body {
-    font-family: 'Montserrat Alternates', sans-serif;
-
-}
-
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    width: 315px;
-
+    gap: 20px;
+    width: 100%;
+    max-width: 315px;
+    padding: 10px;
 }
 
 .heading {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 28px;
     color: #514A4A;
     margin-top: 0px;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .inner_container {
@@ -27,12 +25,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
+    width: 100%;
 }
 
 .line {
     width: 100%;
     border: 1px solid #FDAF39;
+    margin: 5px 0;
 }
 
 .button {
@@ -45,7 +45,6 @@ body {
     height: 50px;
     width: 100%;
     padding: 10px;
-    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .button:hover {
@@ -66,8 +65,7 @@ body {
 .button_text {
     color: white;
     font-weight: 600;
-    font-size: 19px;
-
+    font-size: 18px;
 }
 
 .input_container {
@@ -75,27 +73,25 @@ body {
     flex-direction: column;
     width: 100%;
     gap: 15px;
-
 }
 
 .details {
-    font-size: 17px;
+    font-size: 16px;
     background: transparent;
     border-radius: 5px;
     border: 2px solid #FDAF39;
     padding: 8px;
-    font-family: 'Montserrat Alternates', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .forgot {
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
-    /* font-weight: 600; */
     color: #514A4A;
 }
 
 .button_login {
-    height: 50px;
     background-color: #FDAF39;
     border: none;
     border-radius: 7px;
@@ -107,7 +103,8 @@ body {
     font-family: 'Montserrat Alternates', sans-serif;
     color: white;
     width: 100px;
-    height: 50px;
+    height: 45px;
+    cursor: pointer;
 }
 
 .login_link {
@@ -118,4 +115,38 @@ body {
 
 .login_link:hover {
     color: #514a4a;
+}
+
+.error {
+    color: #ff3333;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+}
+
+.success {
+    color: #33aa33;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .heading {
+        font-size: 24px;
+    }
+
+    .button_text {
+        font-size: 16px;
+    }
+
+    .forgot {
+        font-size: 12px;
+    }
 }

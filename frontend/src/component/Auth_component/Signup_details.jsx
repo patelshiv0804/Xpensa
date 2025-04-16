@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "../../styles/Authapage_styles/signup_details.module.css";
-// import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { GoogleLogin } from '@react-oauth/google';
