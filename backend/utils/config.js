@@ -6,6 +6,7 @@ module.exports = {
     dbUser: process.env.DB_USER || 'root',
     dbPassword: process.env.DB_PASSWORD || '',
     dbName: process.env.DB_NAME || 'xpensa',
+    dbPort: process.env.DB_PORT || 3307,
     emailUser: process.env.EMAIL_USER,
     emailPassword: process.env.EMAIL_PASSWORD,
     frontEndUrl: process.env.FRONTEND_URL || 'http://localhost:5173',

@@ -7,11 +7,12 @@ const pool = mysql.createPool({
   user: config.dbUser,
   password: config.dbPassword,
   database: config.dbName,
-  port: 3307,  // Added port 3307
+  port: config.dbPort,  // Added port 3307
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
 });
+
 
 const connect = async () => {
   try {
