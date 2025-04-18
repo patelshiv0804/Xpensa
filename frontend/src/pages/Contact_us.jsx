@@ -19,7 +19,7 @@ export default function Contact_us() {
                     <Contact_us_image />
                 </div>
             </div>
-            {/* <Animated_gif /> */}
+            <Animated_gif />
         </>
     )
 }

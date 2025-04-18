@@ -263,7 +263,7 @@ const getExpenseTrends = async (userId) => {
   });
 };
 
-const getExpenses = async (userId) => {
+const getExpense = async (userId) => {
   const query = `
     SELECT 
       expense_record.*, 
@@ -362,7 +362,7 @@ module.exports = {
   getTotalMonthExpense,
   getUserCategories,
   getCategoryExpense,
-  getExpenses,
+  getExpense,
   getExpensesByYear,
   getExpensesByMonth,
   getMonthlyExpenseHistory,
