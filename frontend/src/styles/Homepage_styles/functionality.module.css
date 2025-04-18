@@ -62,10 +62,11 @@
     display: block;
     width: 100px;
     height: 3px;
-    background: linear-gradient(90deg, rgba(255, 118, 20, 1) 0%, rgba(224, 93, 93, 1) 50%, rgba(255, 118, 20, 1) 100%);
     margin: 10px auto 0;
     background-size: 200% 100%;
     animation: highlight 3s linear infinite;
+    background: linear-gradient(to right, #fdaf39, #fc741a);
+    border-radius: 2px;
 }
 
 .functions {

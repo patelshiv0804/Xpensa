@@ -5,8 +5,8 @@ import Navbar from "../component/Navbar"
 import Navbar_logout from "../component/Navbar_logout";
 import Animated_gif from "../component/Animated_gif";
 
-export default function Contact_us() {
-
+export default function Contact_us(){
+    
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
     return (
