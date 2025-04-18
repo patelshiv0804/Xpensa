@@ -1,6 +1,23 @@
 .contact_us h1 {
+
     color: #514a4a;
-    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.contact_us h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    /* background-color: #FDAF39; */
+    background: linear-gradient(to right, #fdaf39, #fc741a);
+    border-radius: 2px;
 }
 
 .contact_us {
@@ -10,7 +27,7 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    /* color: #514a4a; */
+
 }
 
 .container {
@@ -20,6 +37,10 @@
     gap: 30px;
     border: 3px solid #FDAF39;
     border-radius: 15px;
-    padding: 50px;
-    width: fit-content;
+    padding: 30px;
+    /* padding: 50px; */
+    /* width: fit-content; */
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;
 }

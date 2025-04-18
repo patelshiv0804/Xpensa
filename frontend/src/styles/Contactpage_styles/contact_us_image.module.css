@@ -1,19 +1,92 @@
 .image {
+    width: 100%;
     width: 400px;
+    height: auto;
 }
 
 .icons {
     display: flex;
     gap: 40px;
-    margin-top: 35px;
+    margin-top: 25px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .icon {
-    width: 45px;
+    width: 35px;
+    transition: transform 0.3s;
 }
 
 .icon:hover {
     cursor: pointer;
+    transform: scale(1.2);
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        padding: 20px;
+    }
+
+    .image {
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact_us {
+        margin: 15px;
+    }
+
+    .container {
+        flex-direction: column;
+        gap: 40px;
+        padding: 25px 15px;
+    }
+
+    .icon {
+        width: 30px;
+    }
+
+    .icons {
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .contact_us h1 {
+        font-size: 24px;
+    }
+
+    .heading h2 {
+        font-size: 20px;
+    }
+
+    .inner_container {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .input {
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .button {
+        width: 120px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .image {
+        max-width: 300px;
+    }
+
+    .icons {
+        gap: 12px;
+    }
+
+    .icon {
+        width: 25px;
+    }
 }

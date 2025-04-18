@@ -4,11 +4,18 @@ import styles from "../styles/Contactpage_styles/contact_us.module.css"
 import Navbar from "../component/Navbar"
 import Navbar_logout from "../component/Navbar_logout";
 import Animated_gif from "../component/Animated_gif";
+import { useEffect, useState } from "react";
 
 export default function Contact_us(){
-    
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
+    // const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // Check login status after component mounts to avoid hydration issues
+        setIsLoggedIn(localStorage.getItem('isLoggedIn') === 'true');
+    }, []);
     return (
         <>
             {isLoggedIn ? <Navbar_logout /> : <Navbar />}
@@ -23,3 +30,4 @@ export default function Contact_us(){
         </>
     )
 }
+

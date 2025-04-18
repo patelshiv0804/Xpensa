@@ -27,7 +27,7 @@ export default function About_us() {
             <div className={styles.mission_wrapper}>
                 <div className={styles.mission_content}>
                     <h2>Our Mission</h2>
-                    <p>At Expensa, we believe everyone deserves financial clarity and control. Our mission is to empower individuals with intelligent tools that transform complex financial management into a simple, insightful experience.</p>
+                    <p>At Xpensa, we believe everyone deserves financial clarity and control. Our mission is to empower individuals with intelligent tools that transform complex financial management into a simple, insightful experience.</p>
                     <div className={styles.mission_stats}>
                         <div className={styles.stat_item}>
                             <span className={styles.stat_number}>85%</span>

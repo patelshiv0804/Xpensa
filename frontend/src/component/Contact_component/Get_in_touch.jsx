@@ -47,8 +47,6 @@ export default function Get_in_touch() {
                     required
                 ></textarea>
 
-                {/* Optional fields like phone/city can be added if needed */}
-
                 {/* Hidden FormSubmit fields */}
                 <input
                     type="hidden"
