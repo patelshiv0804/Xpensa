@@ -5,11 +5,11 @@ import Logo from "./Logo";
 import Button from "./Button";
 
 export default function Navbar_logout({ setIsLoggedIn }) {
+    
     const navigate = useNavigate();
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
     const notificationRef = useRef(null);
     const mobileMenuRef = useRef(null);
 
@@ -64,7 +64,6 @@ export default function Navbar_logout({ setIsLoggedIn }) {
         <>
             <div className={styles.navbar}>
                 <Logo />
-
                 <div className={styles.hamburger} onClick={toggleMobileMenu}>
                     <span></span>
                     <span></span>

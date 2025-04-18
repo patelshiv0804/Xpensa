@@ -429,7 +429,6 @@
 // };
 
 import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/Dashboard_styles/Total_expense.css';
 import ExpenseForm from './ExpenseForm';
