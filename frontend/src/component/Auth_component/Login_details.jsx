@@ -338,7 +338,7 @@ import { jwtDecode } from "jwt-decode";
 import styles from "../styles/Authapage_styles/login_details.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Email_verification from "./Email_verification";
+import Email_verification from "../../pages/Email_verification";
 import { GoogleLogin } from '@react-oauth/google';
 
 export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) {

@@ -1,8 +1,8 @@
 import styles from '../styles/Authapage_styles/Login.module.css';
-import Login_details from './Login_details';
+import Login_details from '../component/Auth_component/Login_details';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import login_img from '../../Images/Login_image.png';
-const Id = import.meta.env.VITE_CLIENT_ID || 123 ;
+const Id = import.meta.env.VITE_CLIENT_ID || 123;
 
 export default function Login({ setShowLoginModal, setShowSignupModal, setIsLoggedIn }) {
     return (
