@@ -3,6 +3,7 @@ import { Send, X, Maximize2, Minimize2 } from "lucide-react";
 import { motion } from "framer-motion";
 import styles from "../styles/Animated_gif.module.css";
 import axios from 'axios';
+import chatbot from '../../Chatbot/chatbot.gif';
 
 const Animated_gif = () => {
     const [isChatOpen, setIsChatOpen] = useState(false);
@@ -76,7 +77,7 @@ const Animated_gif = () => {
         <div className={styles.container}>
             {!isChatOpen ? (
                 <div className={styles.chatbot_overlay} onClick={() => setIsChatOpen(true)}>
-                    <img src="chatbot.gif" alt="My GIF" className={styles.chatbot_image} />
+                    <img src={chatbot} alt="My GIF" className={styles.chatbot_image} />
                 </div>
             ) : (
                 <motion.div
