@@ -1,132 +1,3 @@
-// import React, { useState } from "react";
-// import styles from "./Email_verification_details.module.css";
-
-// const OTPVerification = () => {
-//     const [otp, setOtp] = useState(["", "", "", ""]);
-
-//     const handleChange = (e, index) => {
-//         const value = e.target.value;
-//         if (/^[0-9]?$/.test(value)) {
-//             let newOtp = [...otp];
-//             newOtp[index] = value;
-//             setOtp(newOtp);
-
-//             if (value && index < 3) {
-//                 document.getElementById(`otp-${index + 1}`).focus();
-//             }
-//         }
-//     };
-
-//     const handleVerify = () => {
-//         alert(`Entered OTP: ${otp.join("")}`);
-//     };
-
-//     const handleResend = () => {
-//         alert("OTP Resent Successfully!");
-//     };
-
-//     return (
-//         <div className={styles.container}>
-//             <h2 className={styles.title}>Email Verification</h2>
-//             <p className={styles.info}>We have sent a code to your Email</p>
-//             <div className={styles.otpContainer}>
-//                 {otp.map((value, index) => (
-//                     <input
-//                         key={index}
-//                         id={`otp-${index}`}
-//                         type="text"
-//                         maxLength="1"
-//                         value={value}
-//                         onChange={(e) => handleChange(e, index)}
-//                         className={styles.otpInput}
-//                     />
-//                 ))}
-//             </div>
-//             <button className={styles.btn} onClick={handleVerify}>
-//                 Verify the account
-//             </button>
-//             <p className={styles.resend}>
-//                 Didn’t receive code?{" "}
-//                 <span className={styles.resendLink} onClick={handleResend}>
-//                     Resend OTP
-//                 </span>
-//             </p>
-//         </div>
-//     );
-// };
-
-// export default OTPVerification;
-
-// import React, { useState } from "react";
-// import styles from "./Email_verification_details.module.css";
-
-// export default function Email_verification_details({ email }) {
-//     const [otp, setOtp] = useState(["", "", "", ""]);
-
-//     const handleChange = (e, index) => {
-//         const value = e.target.value;
-//         if (/^[0-9]?$/.test(value)) {
-//             let newOtp = [...otp];
-//             newOtp[index] = value;
-//             setOtp(newOtp);
-
-//             if (value && index < 3) {
-//                 document.getElementById(`otp-${index + 1}`).focus();
-//             }
-//         }
-//     };
-
-//     const handleVerify = () => {
-//         alert(`Entered OTP: ${otp.join("")}`);
-//     };
-
-//     const handleResend = async () => {
-//         try {
-//             const response = await axios.post('http://localhost:3000/user/reset-request', {
-//                 email,
-//             });
-
-//             if (response.status === 200) {
-//                 alert('OTP Resent Successfully!');
-//             } else {
-//                 alert('Error resending OTP. Please try again.');
-//             }
-//         } catch (err) {
-//             console.error('Error:', err);
-//             alert('Error resending OTP.');
-//         }
-//     };
-
-//     return (
-//         <div className={styles.container}>
-//             <h2 className={styles.title}>Email Verification</h2>
-//             <p className={styles.info}>We have sent a code to your Email</p>
-//             <div className={styles.otpContainer}>
-//                 {otp.map((value, index) => (
-//                     <input
-//                         key={index}
-//                         id={`otp-${index}`}
-//                         type="text"
-//                         maxLength="1"
-//                         value={value}
-//                         onChange={(e) => handleChange(e, index)}
-//                         className={styles.otpInput}
-//                     />
-//                 ))}
-//             </div>
-//             <button className={styles.btn} onClick={handleVerify}>
-//                 Verify the account
-//             </button>
-//             <p className={styles.resend}>
-//                 Didn’t receive code?{" "}
-//                 <span className={styles.resendLink} onClick={handleResend}>
-//                     Resend OTP
-//                 </span>
-//             </p>
-//         </div>
-//     );
-// }
-
 import React, { useState } from "react";
 import axios from "axios";
 import Change_password from "../../pages/Change_password";
@@ -136,7 +7,7 @@ export default function Email_verification_details({ email }) {
     const [otp, setOtp] = useState(["", "", "", ""]);
     const [showChangePassword, setShowChangePassword] = useState(false);
 
-    // Handle OTP input changes
+
     const handleChange = (e, index) => {
         const value = e.target.value;
         if (/^[0-9]?$/.test(value)) {
@@ -144,7 +15,6 @@ export default function Email_verification_details({ email }) {
             newOtp[index] = value;
             setOtp(newOtp);
 
-            // Focus on next input
             if (value && index < 3) {
                 document.getElementById(`otp-${index + 1}`).focus();
             }
