@@ -1,5 +1,3 @@
-
-
 import { useEffect, useRef, useState } from 'react';
 import styles from "../../styles/Homepage_styles/detailed_second.module.css";
 

@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar_logout from "../component/Navbar_logout";
 import styles from "../styles/Scan_bills.module.css";
-// import styles from "../styles/"
 import axios from "axios";
 
 export default function ScanBills() {

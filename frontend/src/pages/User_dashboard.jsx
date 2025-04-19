@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Navbar_login from "../component/Navbar_login";
+// import Navbar_login from "../component/Navbar_login";
 import Navbar_logout from "../component/Navbar_logout";
 import Navbar from "../component/Navbar";
 import User_profile from "./User_profile";

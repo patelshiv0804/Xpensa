@@ -1,25 +1,3 @@
-// import styles from './Navbar.module.css'
-// import Logo from './Logo'
-
-
-
-// export default function Navbar() {
-
-//     return (
-//         <div className={styles.navbar}>
-//             <Logo />
-//             <div className={styles.half_navbar}>
-//                 <li>Home</li>
-//                 <li>About us</li>
-//                 <li>Contact us</li>
-//                 <button>Login</button>
-//             </div>
-//         </div>
-
-//     )
-// }
-
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
