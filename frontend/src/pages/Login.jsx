@@ -1,4 +1,4 @@
-import styles from '../styles/Authapage_styles/Login.module.css';
+import styles from '../styles/Authapage_styles/login.module.css';
 import Login_details from '../component/Auth_component/Login_details';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import login_img from '../../Images/Login_image.png';
