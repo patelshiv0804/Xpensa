@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "../component/Navbar";
 import Navbar_logout from "../component/Navbar_logout";
@@ -7,6 +6,7 @@ import Functionality from "../component/Homepage_component/Functionality";
 import Detailed_functionality from "../component/Homepage_component/Detailed_functionality";
 import Animated_gif from "../component/Animated_gif";
 import Footer from "../component/Homepage_component/Footer";
+import "../styles/Homepage_styles/Homepage.module.css";
 
 export default function Homepage() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
