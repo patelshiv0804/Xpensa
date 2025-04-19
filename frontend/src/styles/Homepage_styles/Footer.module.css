@@ -1,24 +1,378 @@
+/* Footer.module.css */
+
 .footer {
-    background-color: #fdaf39;
-    /* color: #ffffff; */
-    text-align: center;
-    padding: 2px 0;
-    font-size: 14px;
-    position: relative;
-    color: #ffffff;
-    bottom: 0;
+    background-color: #fff;
+    color: #333;
+    border-top: 1px solid rgba(253, 175, 57, 0.2);
+    padding: 0;
     width: 100%;
-    margin-top: 20px;
-    /* border-top: 1px solid #333; */
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 -5px 15px rgba(253, 175, 57, 0.05);
 }
 
-.footer p {
-    margin: 5px 0;
-    color: #ffffff;
+.footerContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-.footer strong {
-    color: #514a4a;
+.footerTop {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(253, 175, 57, 0.15);
+    gap: 2rem;
+}
 
+.footerBrand {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footerLogo {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #FDAF39;
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    color: #777;
+}
+
+.socialIcons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(253, 175, 57, 0.1);
+    color: #FDAF39;
+    transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+    background-color: #FDAF39;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(253, 175, 57, 0.2);
+}
+
+.footerLinks {
+    display: flex;
+    flex: 2;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.linksColumn {
+    flex: 1;
+    min-width: 140px;
+}
+
+.linksColumn h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: #444;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.linksColumn h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    /* background-color: #FDAF39; */
+    background: linear-gradient(to right, #fdaf39, #fc741a);
+    border-radius: 2px;
+}
+
+.linksColumn ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.linksColumn ul li {
+    margin-bottom: 0.8rem;
+}
+
+.linksColumn ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.linksColumn ul li a:hover {
+    color: #FDAF39;
+    transform: translateX(3px);
+}
+
+/* 
+.contactList li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+} */
+
+.contactList li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.contactList li svg {
+    color: #FDAF39;
+    flex-shrink: 0;
+}
+
+.contactList li span {
+    line-height: 1.4;
+}
+
+/* Add hover effect for contact items */
+.contactList li:hover {
+    color: #555;
+    transform: translateX(3px);
+    transition: all 0.2s ease;
+}
+
+.footerMiddle {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(253, 175, 57, 0.15);
+    gap: 2rem;
+}
+
+.newsletter {
+    flex: 1;
+    min-width: 280px;
+}
+
+.newsletter h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #444;
+}
+
+.newsletter p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.subscribeForm {
+    display: flex;
+    max-width: 400px;
+}
+
+.subscribeForm input {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(253, 175, 57, 0.3);
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.subscribeForm input:focus {
+    border-color: #FDAF39;
+}
+
+.subscribeForm button {
+    padding: 0 1.2rem;
+    background-color: #FDAF39;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.subscribeForm button:hover {
+    background-color: #f79f20;
+}
+
+.appDownload {
+    flex: 1;
+    min-width: 280px;
+}
+
+.appDownload h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #444;
+}
+
+.appButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.appButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.appButton:hover {
+    background-color: #222;
+    transform: translateY(-2px);
+}
+
+.appIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.1;
+}
+
+.appTextSmall {
+    font-size: 0.65rem;
+    font-weight: 400;
+}
+
+.appTextLarge {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footerBottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    gap: 1rem;
+}
+
+.copyrightSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.copyright,
+.poweredBy {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.poweredBy strong {
+    color: #FDAF39;
+}
+
+.legalLinks {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.legalLinks a {
+    font-size: 0.85rem;
+    color: #777;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.legalLinks a:hover {
+    color: #FDAF39;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+
+    .footerTop,
+    .footerMiddle,
+    .footerBottom {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footerLinks {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .linksColumn {
+        min-width: 100%;
+    }
+
+    .legalLinks {
+        margin-top: 1rem;
+    }
+
+    .copyrightSection {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Add the warm background color for the footer */
+.footer {
+    background-color: #fdf7f1;
+}
+
+/* Add subtle hover effects to interactive elements */
+.footerLinks a:hover,
+.legalLinks a:hover {
+    text-decoration: none;
+    color: #FDAF39;
+}
+
+/* Add subtle animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer {
+    animation: fadeUp 0.5s ease-out;
 }
