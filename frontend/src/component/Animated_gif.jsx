@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import styles from "../styles/Animated_gif.module.css";
 import axios from 'axios';
 import chatbot from '../../Chatbot/chatbot.gif';
+import Login from "../pages/Login";
+import Sign_up from "../pages/Sign_up";
 
 const Animated_gif = () => {
     const [isChatOpen, setIsChatOpen] = useState(false);
@@ -11,6 +13,8 @@ const Animated_gif = () => {
     const [inputValue, setInputValue] = useState("");
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showSignupModal, setShowSignupModal] = useState(false);
     const chatContainerRef = useRef(null);
 
     const toggleExpand = () => {
@@ -27,10 +31,19 @@ const Animated_gif = () => {
         }
     };
 
+    const checkLoginAndOpen = () => {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+        if (!isLoggedIn) {
+            setShowLoginModal(true);
+        } else {
+            setIsChatOpen(true);
+        }
+    };
+
     const handleSendMessage = async () => {
         if (!inputValue.trim()) return;
 
-        // Add user message to chat
         const userMessage = inputValue;
         setMessages(prev => [...prev, userMessage]);
         setInputValue("");
@@ -76,7 +89,7 @@ const Animated_gif = () => {
     return (
         <div className={styles.container}>
             {!isChatOpen ? (
-                <div className={styles.chatbot_overlay} onClick={() => setIsChatOpen(true)}>
+                <div className={styles.chatbot_overlay} onClick={checkLoginAndOpen}>
                     <img src={chatbot} alt="My GIF" className={styles.chatbot_image} />
                 </div>
             ) : (
@@ -147,6 +160,41 @@ const Animated_gif = () => {
                         </div>
                     </div>
                 </motion.div>
+            )}
+
+            {showLoginModal && (
+                <div className={styles.overlay} onClick={() => setShowLoginModal(false)}>
+                    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+                        <Login
+                            setShowLoginModal={setShowLoginModal}
+                            setShowSignupModal={setShowSignupModal}
+                        />
+                        <button
+                            className={styles.closeButton}
+                            onClick={() => setShowLoginModal(false)}
+                        >
+                            X
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* Signup Modal */}
+            {showSignupModal && (
+                <div className={styles.overlay} onClick={() => setShowSignupModal(false)}>
+                    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+                        <Sign_up
+                            setShowSignupModal={setShowSignupModal}
+                            setShowLoginModal={setShowLoginModal}
+                        />
+                        <button
+                            className={styles.closeButton}
+                            onClick={() => setShowSignupModal(false)}
+                        >
+                            X
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );

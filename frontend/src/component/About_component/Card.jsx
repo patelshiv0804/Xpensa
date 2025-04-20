@@ -133,7 +133,7 @@ const StyledWrapper = styled.div`
     bottom: 0;
     left: 1.5rem;
     right: 1.5rem;
-    height: 160px;
+    height: 175px;
   }
 
   .card .bottom .content .name {
