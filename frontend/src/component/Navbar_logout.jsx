@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "../styles/Navbar_login.module.css";
 import Logo from "./Logo";
 import Button from "./Button";
+import notification_logo from "../../logos/notifications.png"
+import profile_logo from "../../logos/profile.png"
 
 export default function Navbar_logout({ setIsLoggedIn }) {
     
@@ -88,7 +90,7 @@ export default function Navbar_logout({ setIsLoggedIn }) {
                         >
                             <img
                                 className={styles.notification}
-                                src="logos/notifications.png"
+                                src={notification_logo}
                                 alt="Notifications"
                             />
                         </div>
@@ -99,7 +101,7 @@ export default function Navbar_logout({ setIsLoggedIn }) {
                         >
                             <img
                                 className={styles.notification}
-                                src="logos/profile.png"
+                                src={profile_logo}
                                 alt="Profile"
                             />
                         </div>
