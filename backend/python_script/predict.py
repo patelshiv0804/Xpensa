@@ -87,11 +87,11 @@ from sklearn.linear_model import LinearRegression
 def generate_monthly_trend_data(user_id):
     try:
         connection = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='',
+            host='mysql-3d445f85-patelshiv0804-8aa7.j.aivencloud.com',
+            user='avnadmin',
+            password='AVNS_AVfanxh_rb3NhsjWKZo',
             database='xpensa',
-            port=3307,
+            port=24414,
         )
         cursor = connection.cursor(dictionary=True)
         query = "SELECT amount, date FROM expense_record WHERE user_id = %s"
