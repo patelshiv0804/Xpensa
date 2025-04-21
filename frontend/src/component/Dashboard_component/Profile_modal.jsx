@@ -23,7 +23,7 @@ const Profile_modal = ({ isOpen, onClose }) => {
         const fetchProfile = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`http://localhost:3000/profile/check/${userId}`);
+                const response = await axios.get(`https://xpensa.onrender.com/profile/check/${userId}`);
                 const profileData = response.data.profile;
 
                 setProfile({
@@ -102,11 +102,11 @@ const Profile_modal = ({ isOpen, onClose }) => {
 
             let response;
             if (isNewProfile) {
-                response = await axios.post('http://localhost:3000/profile/add', formData, {
+                response = await axios.post('https://xpensa.onrender.com/profile/add', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
             } else {
-                response = await axios.post('http://localhost:3000/profile/edit', formData, {
+                response = await axios.post('https://xpensa.onrender.com/profile/edit', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
             }

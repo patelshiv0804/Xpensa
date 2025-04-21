@@ -33,7 +33,7 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/user/login', {
+            const response = await axios.post('https://xpensa.onrender.com/user/login', {
                 email,
                 password,
             });
@@ -59,7 +59,7 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
             return;
         }
 
-        const response = await handleApiCall("http://localhost:3000/user/reset-request", { email });
+        const response = await handleApiCall("https://xpensa.onrender.com/user/reset-request", { email });
 
         if (response && response.status === 200) {
             alert("OTP sent to your email successfully!");
@@ -75,7 +75,7 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
             const decodedToken = jwtDecode(credential);
             console.log(decodedToken);
 
-            const response = await handleApiCall("http://localhost:3000/user/google-login", { token: credential });
+            const response = await handleApiCall("https://xpensa.onrender.com/user/google-login", { token: credential });
 
             if (response && response.status === 200) {
                 alert("Google Login Successful!");

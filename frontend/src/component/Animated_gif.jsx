@@ -50,15 +50,15 @@ const Animated_gif = () => {
         setIsLoading(true);
 
         try {
-            
+
             const userId = localStorage.getItem("userId") || "anonymous";
 
-            const response = await axios.post("http://localhost:3000/agent/get", {
+            const response = await axios.post("https://xpensa.onrender.com/agent/get", {
                 userId: userId,
                 userQuery: userMessage
             });
 
-            
+
             const responseData = response.data.reply;
             let displayMessage;
 

@@ -52,7 +52,7 @@ const Expense_analysis = () => {
         const fetchYears = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/expense/get-expense-years/${userId}`
+                    `https://xpensa.onrender.com/expense/get-expense-years/${userId}`
                 );
                 if (response.data && response.data.data) {
                     const yearsData = response.data.data.map((item) => item.year);
@@ -77,7 +77,7 @@ const Expense_analysis = () => {
             try {
                 // Fetch category distribution data
                 const categoryResponse = await axios.get(
-                    `http://localhost:3000/expense/get-expense-bymonth/${userId}/${selectedYear}/${selectedMonth}`
+                    `https://xpensa.onrender.com/expense/get-expense-bymonth/${userId}/${selectedYear}/${selectedMonth}`
                 );
 
                 if (categoryResponse.data && categoryResponse.data.data) {
@@ -95,7 +95,7 @@ const Expense_analysis = () => {
 
                 // Fetch monthly trend data for the selected year
                 const monthlyDataPromises = months.map(month =>
-                    axios.get(`http://localhost:3000/expense/get-expense-bymonth/${userId}/${selectedYear}/${month}`)
+                    axios.get(`https://xpensa.onrender.com/expense/get-expense-bymonth/${userId}/${selectedYear}/${month}`)
                         .then(res => {
                             if (res.data && res.data.data) {
                                 const total = res.data.data.reduce((sum, item) => sum + parseFloat(item.total_amount), 0);

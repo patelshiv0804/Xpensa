@@ -22,7 +22,7 @@ const Profile = () => {
 
     const fetchProfileData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/profile/check/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/profile/check/${userId}`);
             const data = response.data.profile;
 
             setProfileData({

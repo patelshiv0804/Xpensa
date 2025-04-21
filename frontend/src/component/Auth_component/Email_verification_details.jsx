@@ -26,7 +26,7 @@ export default function Email_verification_details({ email }) {
         const enteredOtp = otp.join("");
 
         try {
-            const response = await axios.post("http://localhost:3000/user/verify-otp", {
+            const response = await axios.post("https://xpensa.onrender.com/user/verify-otp", {
                 email,
                 otp: enteredOtp,
             });
@@ -50,7 +50,7 @@ export default function Email_verification_details({ email }) {
     // Handle OTP Resend
     const handleResend = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/user/reset-request", {
+            const response = await axios.post("https://xpensa.onrender.com/user/reset-request", {
                 email,
             });
 

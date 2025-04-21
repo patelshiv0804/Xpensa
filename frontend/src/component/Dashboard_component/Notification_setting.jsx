@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Dashboard_styles/Notification_setting.module.css";
-import axios from "axios"; 
+import axios from "axios";
 
 export default function Notification_setting() {
     const [notifications, setNotifications] = useState({
@@ -23,7 +23,7 @@ export default function Notification_setting() {
             // Fetch user preferences when the page loads
             const fetchPreferences = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3000/preferences/get/${storedUserId}`);
+                    const response = await axios.get(`https://xpensa.onrender.com/preferences/get/${storedUserId}`);
                     setNotifications(response.data.preferences);
                 } catch (error) {
                     console.error("Error fetching preferences", error);
@@ -45,7 +45,7 @@ export default function Notification_setting() {
         const updatePreferences = async () => {
             try {
                 if (userId) {
-                    await axios.post('http://localhost:3000/preferences/edit', {
+                    await axios.post('https://xpensa.onrender.com/preferences/edit', {
                         user_id: userId,
                         ...updatedNotifications
                     });

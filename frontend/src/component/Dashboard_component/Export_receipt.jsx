@@ -22,7 +22,7 @@ const Export_receipt = () => {
     const fetchExpenseYears = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:3000/expense/get-expense-years/${userId}`);
+            const response = await fetch(`https://xpensa.onrender.com/expense/get-expense-years/${userId}`);
 
             if (!response.ok) {
                 throw new Error('Failed to fetch expense years');
@@ -74,9 +74,9 @@ const Export_receipt = () => {
 
         let url;
         if (reportType === 'yearly') {
-            url = `http://localhost:3000/expense/get-report-byyear/${userId}/${selectedYear}`;
+            url = `https://xpensa.onrender.com/expense/get-report-byyear/${userId}/${selectedYear}`;
         } else {
-            url = `http://localhost:3000/expense/get-report-bymonth/${userId}/${selectedYear}/${selectedMonth}`;
+            url = `https://xpensa.onrender.com/expense/get-report-bymonth/${userId}/${selectedYear}/${selectedMonth}`;
         }
 
         try {

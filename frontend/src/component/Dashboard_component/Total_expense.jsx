@@ -52,7 +52,7 @@ const Total_expense = () => {
     const fetchYears = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`http://localhost:3000/expense/get-expense-years/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-expense-years/${userId}`);
             if (response.data.data && response.data.data.length > 0) {
                 setYears(response.data.data);
                 setSelectedYear(response.data.data[0].year); // Set to most recent year
@@ -73,7 +73,7 @@ const Total_expense = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/expense/get-categories/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-categories/${userId}`);
             if (response.data.data) {
                 setCategories(response.data.data);
                 setCategoriesLoaded(true); // Mark categories as loaded
@@ -91,9 +91,9 @@ const Total_expense = () => {
             let url;
 
             if (selectedCategory === 'all') {
-                url = `http://localhost:3000/expense/get-expense-bymonth/${userId}/${selectedYear}/${selectedMonth}`;
+                url = `https://xpensa.onrender.com/expense/get-expense-bymonth/${userId}/${selectedYear}/${selectedMonth}`;
             } else {
-                url = `http://localhost:3000/expense/get-expense-bycategory/${userId}/${selectedYear}/${selectedMonth}/${selectedCategory}`;
+                url = `https://xpensa.onrender.com/expense/get-expense-bycategory/${userId}/${selectedYear}/${selectedMonth}/${selectedCategory}`;
             }
 
             const response = await axios.get(url);
@@ -137,7 +137,7 @@ const Total_expense = () => {
             setIsLoading(true);
 
             // Get all expenses for the user
-            const response = await axios.get(`http://localhost:3000/expense/get-expense/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-expense/${userId}`);
 
             if (response.data.data) {
                 // Filter expenses by selected month, year, and category
@@ -193,7 +193,7 @@ const Total_expense = () => {
 
     const handleEdit = async (expenseId) => {
         try {
-            const response = await axios.get(`http://localhost:3000/expense/get-single-expense/${expenseId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-single-expense/${expenseId}`);
             if (response.data.data) {
                 setEditExpense(response.data.data);
                 setShowForm(true);
@@ -206,7 +206,7 @@ const Total_expense = () => {
     const handleDelete = async (expenseId) => {
         if (window.confirm('Are you sure you want to delete this expense?')) {
             try {
-                await axios.post(`http://localhost:3000/expense/delete-expense/${expenseId}`);
+                await axios.post(`https://xpensa.onrender.com/expense/delete-expense/${expenseId}`);
                 fetchCategoryExpenses();
                 fetchDetailedExpenses();
             } catch (error) {
@@ -220,7 +220,7 @@ const Total_expense = () => {
             setIsLoading(true);
             if (editExpense) {
 
-                await axios.put('http://localhost:3000/expense/edit', {
+                await axios.put('https://xpensa.onrender.com/expense/edit', {
                     ...formData,
                     id: editExpense.eid,
                     user_id: userId
@@ -237,7 +237,7 @@ const Total_expense = () => {
                     data.append('file', formData.file);
                 }
 
-                await axios.post('http://localhost:3000/expense/add', data);
+                await axios.post('https://xpensa.onrender.com/expense/add', data);
             }
 
             setShowForm(false);
@@ -288,9 +288,9 @@ const Total_expense = () => {
             expense.receipt ||
             expense.attachment ||
             // If image is stored with a path prefix
-            (expense.file_path ? `http://localhost:3000/${expense.file_path}` : null) ||
-            (expense.image_path ? `http://localhost:3000/${expense.image_path}` : null) ||
-            (expense.receipt_path ? `http://localhost:3000/${expense.receipt_path}` : null)
+            (expense.file_path ? `https://xpensa.onrender.com/${expense.file_path}` : null) ||
+            (expense.image_path ? `https://xpensa.onrender.com/${expense.image_path}` : null) ||
+            (expense.receipt_path ? `https://xpensa.onrender.com/${expense.receipt_path}` : null)
         );
     };
 
