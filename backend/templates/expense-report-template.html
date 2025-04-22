@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Expense Report</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <style>
-     @media print {
+    @media print {
       @page {
         margin: 40px 20px;
       }
@@ -53,15 +52,12 @@
       color: white;
     }
 
-  canvas {
-  max-width: 800px;
-  margin: auto;
-  height: 450px; /* increase to give more room for labels */
-  display: block;
-}
+    #expenseChart {
+      height: 400px;
+      width: 100%;
+      margin: auto;
+    }
 
-
-    /* Centered Header */
     .report-header {
       display: flex;
       justify-content: center;
@@ -82,7 +78,6 @@
       color: #514A4A;
     }
 
-    /* Footer fixed for every page */
     .footer {
       position: fixed;
       bottom: 20px;
@@ -90,22 +85,19 @@
       font-size: 12px;
       color: #514A4A;
     }
-    .page-break {
-  page-break-before: always;
-  break-before: page;
-}
 
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Centered logo + app name -->
   <div class="report-header">
     <img src="{{imageSrc}}" alt="Report Header Image" class="logo-img" />
     <span class="app-name">Xpensa | Expense Report</span>
   </div>
-  
-
 
   <div class="section">
     <h3>Total Expenses: ₹{{totalAmount}}</h3>
@@ -122,12 +114,11 @@
 
   <div class="section">
     <h3>Category-wise Expense Distribution</h3>
-    <canvas id="expenseChart"></canvas>
+    <div id="expenseChart"></div>
   </div>
 
   <div class="section page-break">
     <h3>Expense Breakdown</h3>
-  
     <table>
       <thead>
         <tr>
@@ -150,95 +141,44 @@
     </table>
   </div>
 
-  <!-- Footer shown on every page -->
   <div style="height: 60px;"></div>
   <div class="footer">Powered by SKV</div>
-  
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById('expenseChart').getContext('2d');
 
-    const labels = {{{chartLabels}}}; // e.g., ['Education', 'Savings', 'Transportation', ...]
-    const values = {{{chartData}}};   // e.g., [22, 9, 26, ...]
-
-    const total = values.reduce((a, b) => a + b, 0);
-
-    const data = {
-      labels: labels,
-      datasets: [{
-        data: values,
-        backgroundColor: [
-          '#4CAF50',  // Education
-          '#36A2EB',  // Savings
-          '#FDAF39',  // Transportation
-          '#FF9800',  // Groceries
-          '#9C27B0',  // Utilities
-          '#FF6384',  // Entertainment
-          '#8BC34A'   // Rent
-        ],
-        borderWidth: 1
-      }]
-    };
-
-    const options = {
-  responsive: true,
-  layout: {
-    padding: 40, // adds space around the chart to avoid clipping
-  },
-  plugins: {
-    legend: {
-      display: true,
-      position: 'bottom',
-      labels: {
-        font: {
-          size: 13
-        },
-        color: '#514A4A'
-      }
-    },
-    datalabels: {
-      color: '#000',
-      font: {
-        weight: 'bold',
-        size: 13
-      },
-      align: 'end',
-      anchor: 'end',
-      offset: 16,
-      clamp: true, // prevents labels from overflowing the canvas
-      formatter: function (value, context) {
-        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-        const label = context.chart.data.labels[context.dataIndex];
-        const percent = ((value / total) * 100).toFixed(0);
-        return `${label}: ${percent}%`;
-      }
-    },
-    tooltip: {
-      callbacks: {
-        label: function (context) {
-          const label = context.label || '';
-          const value = context.parsed;
-          const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-          const percent = ((value / total) * 100).toFixed(2);
-          return `${label}: ₹${value} (${percent}%)`;
-        }
-      }
-    }
-  }
-};
-
-
-    new Chart(ctx, {
-      type: 'pie',
-      data: data,
-      options: options,
-      plugins: [ChartDataLabels]
+  <script>
+    google.charts.load('current', {
+      packages: ['corechart']
     });
-  });
-</script>
+    google.charts.setOnLoadCallback(drawChart);
 
+    function drawChart() {
+      const labels = {{{chartLabels}}}; // e.g., ["Education", "Savings", ...]
+      const values = {{{chartData}}};   // e.g., [22, 9, 26, ...]
 
-  
+      const chartData = [['Category', 'Amount']];
+      for (let i = 0; i < labels.length; i++) {
+        chartData.push([labels[i], values[i]]);
+      }
 
+      const data = google.visualization.arrayToDataTable(chartData);
+
+      const options = {
+        title: 'Category-wise Expense Distribution',
+        pieHole: 0.4,
+        legend: {
+          position: 'bottom',
+          textStyle: { fontSize: 13, color: '#514A4A' }
+        },
+        chartArea: { width: '90%', height: '75%' },
+        pieSliceText: 'percentage',
+        colors: [
+          '#4CAF50', '#36A2EB', '#FDAF39',
+          '#FF9800', '#9C27B0', '#FF6384', '#8BC34A'
+        ],
+      };
+
+      const chart = new google.visualization.PieChart(document.getElementById('expenseChart'));
+      chart.draw(data, options);
+    }
+  </script>
 </body>
 </html>
