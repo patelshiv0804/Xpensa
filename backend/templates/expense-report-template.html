@@ -61,7 +61,6 @@
   margin: auto;
 }
 
-
     /* Centered Header */
     .report-header {
       display: flex;
@@ -105,8 +104,6 @@
     <img src="{{imageSrc}}" alt="Report Header Image" class="logo-img" />
     <span class="app-name">Xpensa | Expense Report</span>
   </div>
-  
-
 
   <div class="section">
     <h3>Total Expenses: ₹{{totalAmount}}</h3>
@@ -233,16 +230,13 @@
 };
 
     new Chart(ctx, {
-      type: 'pie',
+      type: 'doughnut',  // Changed chart type to doughnut
       data: data,
       options: options,
       plugins: [ChartDataLabels]
     });
   });
 </script>
-
-
-  
 
 </body>
 </html>
