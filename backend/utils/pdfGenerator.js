@@ -69,6 +69,7 @@
 
 // module.exports = generateExpensePDF;
 
+
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
@@ -83,20 +84,12 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
   try {
     console.log('Starting PDF generation...');
     
-    // Check if Chrome executable exists
-    const execPath = '/opt/render/.cache/puppeteer/chrome/linux-1045629/chrome-linux/chrome';
-    const exists = fs.existsSync(execPath);
-    console.log(`Chrome executable path: ${execPath}`);
-    console.log(`Chrome executable exists: ${exists}`);
-    
-    // Get OS platform details for debugging
     console.log(`OS Platform: ${os.platform()}`);
     console.log(`OS Type: ${os.type()}`);
     
     const templateHtml = fs.readFileSync(path.join(__dirname, '../templates/expense-report-template.html'), 'utf8');
     const template = Handlebars.compile(templateHtml);
 
-    // Rest of your existing code...
     const breakdown = userExpenseReport.breakdown;
     const categoryTotals = {};
 
@@ -122,9 +115,10 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
     });
 
     console.log('Launching browser...');
+    
+    // Using Puppeteer's built-in Chromium instead of a specific path
     const browser = await puppeteer.launch({
       headless: true,
-      executablePath: execPath,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
