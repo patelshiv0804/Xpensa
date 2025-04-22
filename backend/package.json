@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "puppeteer install",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +27,7 @@
     "mysql2": "^3.13.0",
     "nodemailer": "^6.10.0",
     "pdfkit": "^0.16.0",
-    "puppeteer": "^24.6.0",
+    "puppeteer": "^19.0.0",
     "tesseract.js": "^6.0.0",
     "winston": "^3.17.0"
   }

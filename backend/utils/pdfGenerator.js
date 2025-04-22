@@ -68,7 +68,6 @@
 // };
 
 // module.exports = generateExpensePDF;
-
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
@@ -107,10 +106,15 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
     imageSrc: base64Image,
   });
 
-  // Launch Puppeteer without specifying the executablePath
+  // Launch Puppeteer without specifying executablePath
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--single-process'
+    ]
   });
 
   const page = await browser.newPage();
