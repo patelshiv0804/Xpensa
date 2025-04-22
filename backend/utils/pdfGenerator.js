@@ -68,13 +68,10 @@
 // };
 
 // module.exports = generateExpensePDF;
-
-
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 const Handlebars = require('handlebars');
-const os = require('os');
 
 Handlebars.registerHelper('json', function (context) {
   return JSON.stringify(context);
@@ -83,9 +80,6 @@ Handlebars.registerHelper('json', function (context) {
 const generateExpensePDF = async (userExpenseReport, outputPath) => {
   try {
     console.log('Starting PDF generation...');
-    
-    console.log(`OS Platform: ${os.platform()}`);
-    console.log(`OS Type: ${os.type()}`);
     
     const templateHtml = fs.readFileSync(path.join(__dirname, '../templates/expense-report-template.html'), 'utf8');
     const template = Handlebars.compile(templateHtml);
@@ -114,11 +108,11 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
       imageSrc: base64Image,
     });
 
-    console.log('Launching browser...');
+    console.log('Launching browser with path:', process.env.CHROME_PATH || '/usr/bin/chromium-browser');
     
-    // Using Puppeteer's built-in Chromium instead of a specific path
     const browser = await puppeteer.launch({
       headless: true,
+      executablePath: process.env.CHROME_PATH || '/usr/bin/chromium-browser',
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
@@ -129,14 +123,11 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
 
     console.log('Browser launched successfully');
     const page = await browser.newPage();
-    console.log('New page created');
     await page.setContent(html, { waitUntil: 'networkidle0' });
-    console.log('Page content set');
 
     await page.waitForFunction(() => {
       return document.querySelector('#expenseChart') !== null;
     });
-    console.log('Chart rendered');
 
     await page.pdf({
       path: outputPath,
@@ -146,7 +137,6 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
     console.log(`PDF saved to: ${outputPath}`);
 
     await browser.close();
-    console.log('Browser closed');
     return true;
   } catch (error) {
     console.error('PDF generation error:', error);
