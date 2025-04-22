@@ -35,6 +35,8 @@ const Total_expense = () => {
     const [showImagePreview, setShowImagePreview] = useState(false);
     const [previewImageUrl, setPreviewImageUrl] = useState('');
 
+    const [currentExpense, setCurrentExpense] = useState(null);
+
     useEffect(() => {
         if (userId) {
             fetchYears();
@@ -294,11 +296,22 @@ const Total_expense = () => {
         );
     };
 
+    const getReceiptFilename = (expense) => {
+        const expenseDate = new Date(expense.date);
+        const formattedDate = expenseDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+        const category = expense.category_name ? expense.category_name.replace(/\s+/g, '_') : 'expense';
+        const amount = parseFloat(expense.amount).toFixed(2).replace('.', '_');
+
+        // Create a filename with date, category, and amount
+        return `receipt_${formattedDate}_${category}_${amount}.jpg`;
+    };
+
     // New function to handle image preview
     const handleImagePreview = (expense) => {
         const imageUrl = getImageUrl(expense);
         if (imageUrl) {
             setPreviewImageUrl(imageUrl);
+            setCurrentExpense(expense);
             setShowImagePreview(true);
         } else {
             alert('No receipt image available for this expense');
@@ -309,6 +322,39 @@ const Total_expense = () => {
     const closeImagePreview = () => {
         setShowImagePreview(false);
         setPreviewImageUrl('');
+        setCurrentExpense(expense);
+    };
+
+    const handleDownloadReceipt = (e) => {
+        // Prevent the click event from propagating to parent elements
+        e.stopPropagation();
+
+        if (!previewImageUrl || !currentExpense) return;
+
+        // Create a fetch request to get the image data
+        fetch(previewImageUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                // Create a local URL for the blob
+                const blobUrl = window.URL.createObjectURL(blob);
+
+                // Create an anchor element
+                const downloadLink = document.createElement('a');
+                downloadLink.href = blobUrl;
+                downloadLink.download = getReceiptFilename(currentExpense);
+
+                // Append to the document, click it, and remove it
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+
+                // Release the blob URL
+                window.URL.revokeObjectURL(blobUrl);
+            })
+            .catch(error => {
+                console.error('Error downloading the receipt:', error);
+                alert('Failed to download the receipt. Please try again.');
+            });
     };
 
     return (
@@ -485,7 +531,20 @@ const Total_expense = () => {
             {showImagePreview && (
                 <div className="image-preview-overlay" onClick={closeImagePreview}>
                     <div className="image-preview-container" onClick={e => e.stopPropagation()}>
+                        <div className="image-preview-header">
                         <button className="close-preview" onClick={closeImagePreview}>×</button>
+                        <button
+                            className="download-receipt"
+                            onClick={handleDownloadReceipt}
+                            title="Download Receipt"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                            </svg>
+                            Download
+                        </button>
+                        </div>
                         <img
                             src={previewImageUrl}
                             alt="Receipt"
