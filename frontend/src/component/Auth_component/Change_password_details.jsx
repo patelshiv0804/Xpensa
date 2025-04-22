@@ -33,7 +33,7 @@ const Change_password_details = () => {
         try {
 
             const response = await axios.post(
-                "http://localhost:3000/user/reset-password",
+                "https://xpensa.onrender.com/user/reset-password",
                 {
                     email,
                     newPassword: password,
@@ -43,7 +43,7 @@ const Change_password_details = () => {
             if (response.status === 200) {
                 alert("Password reset successfully!");
 
-   
+
                 closeAllModals();
 
                 localStorage.removeItem("userEmail");
@@ -108,7 +108,7 @@ const Change_password_details = () => {
                         checked={acceptedTerms}
                         onChange={(e) => setAcceptedTerms(e.target.checked)}
                     />
-                    <label htmlFor="termsCheckbox"  className={styles.checkboxLabel}>
+                    <label htmlFor="termsCheckbox" className={styles.checkboxLabel}>
                         I accept the Terms and Conditions
                     </label>
                 </div>

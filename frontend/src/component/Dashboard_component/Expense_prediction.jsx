@@ -28,7 +28,7 @@ const Expense_prediction = () => {
         setError(null);
 
         try {
-            const response = await axios.get(`http://localhost:3000/expense/get-future-expense/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-future-expense/${userId}`);
             const data = response.data.data;
 
             // Combine historical and prediction data for visualization

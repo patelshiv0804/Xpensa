@@ -76,7 +76,7 @@ export default function ScanBills() {
         }
     };
 
-    
+
     const handleUpload = async () => {
         if (!file) {
             setError("Please select a file to upload");
@@ -92,7 +92,7 @@ export default function ScanBills() {
             formData.append("file", file);
 
             console.log("formData:", formData);
-            const response = await axios.post("http://localhost:3000/expense/get", formData, {
+            const response = await axios.post("https://xpensa.onrender.com/expense/get", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -157,7 +157,7 @@ export default function ScanBills() {
             formData.append("date", editableData.bill_date);
             formData.append("description", editableData.bill_title);
 
-            const response = await axios.post("http://localhost:3000/expense/add", formData, {
+            const response = await axios.post("https://xpensa.onrender.com/expense/add", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

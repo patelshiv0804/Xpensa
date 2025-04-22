@@ -23,7 +23,7 @@ const Expense_limit = () => {
     const fetchCategories = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://localhost:3000/category/get/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/category/get/${userId}`);
             setCategories(response.data.data);
             setError(null);
         } catch (error) {
@@ -47,7 +47,7 @@ const Expense_limit = () => {
         }
 
         try {
-            await axios.post(`http://localhost:3000/category/add/${userId}/${selectedCategory}`);
+            await axios.post(`https://xpensa.onrender.com/category/add/${userId}/${selectedCategory}`);
             fetchCategories();
             setSelectedCategory("");
         } catch (error) {
@@ -59,7 +59,7 @@ const Expense_limit = () => {
     const handleDeleteCategory = async (cid, categoryName) => {
         if (confirm(`Are you sure you want to delete "${categoryName}"?`)) {
             try {
-                await axios.delete(`http://localhost:3000/category/delete/${cid}`);
+                await axios.delete(`https://xpensa.onrender.com/category/delete/${cid}`);
                 fetchCategories();
             } catch (error) {
                 console.error("Error deleting category", error);
@@ -75,7 +75,7 @@ const Expense_limit = () => {
         }
 
         try {
-            await axios.put("http://localhost:3000/category/edit", {
+            await axios.put("https://xpensa.onrender.com/category/edit", {
                 cid,
                 budget_limit: expenseLimit[cid],
             });

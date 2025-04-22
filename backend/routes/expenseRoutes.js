@@ -6,9 +6,12 @@ const saveProfileImages = require('../utils/saveProfileImages');
 
 const router = express.Router();
 
+// ✅ Use platform-independent relative path
+const imageStoragePath = path.join(__dirname, '../billsImage');
+
 const diskStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'D:/expensa/backend/billsImage');
+    cb(null, imageStoragePath);
   },
   filename: (req, file, cb) => {
     const uniqueFileName = saveProfileImages(file.originalname);
@@ -22,7 +25,6 @@ const memoryStorage = multer.memoryStorage();
 const uploadToDisk = multer({ storage: diskStorage });
 const uploadToMemory = multer({ storage: memoryStorage });
 
-// router.get('/get', uploadToMemory.single('file'), expenseController.getExpenseDetails);
 router.post('/get', uploadToMemory.single('file'), expenseController.getExpenseDetails);
 router.post('/add', uploadToDisk.single('file'), expenseController.makeExpenseEntry);
 router.put('/edit', expenseController.editExpenseEntry);

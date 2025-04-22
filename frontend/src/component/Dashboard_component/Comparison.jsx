@@ -32,7 +32,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const Comparison = () => {
 
-    const [periodType, setPeriodType] = useState('month'); 
+    const [periodType, setPeriodType] = useState('month');
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
     const [selectedMonth, setSelectedMonth] = useState((new Date().getMonth() + 1).toString());
     const [availableYears, setAvailableYears] = useState([]);
@@ -80,7 +80,7 @@ const Comparison = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get(`http://localhost:3000/expense/get-expense-years/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-expense-years/${userId}`);
             if (response.data && response.data.data && response.data.data.length > 0) {
                 const years = response.data.data.map(item => item.year.toString());
                 setAvailableYears(years);
@@ -109,7 +109,7 @@ const Comparison = () => {
         try {
             // For this endpoint, we'll need to modify the backend to support it
             // For now, we'll simulate by fetching expense for the year and extracting unique months
-            const response = await axios.get(`http://localhost:3000/expense/get-expense-byyear/${userId}/${selectedYear}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-expense-byyear/${userId}/${selectedYear}`);
 
             if (response.data && response.data.data && response.data.data.length > 0) {
                 // This will require backend modification to include month information
@@ -145,7 +145,7 @@ const Comparison = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get(`http://localhost:3000/expense/get-categories/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-categories/${userId}`);
             if (response.data && response.data.data) {
                 setCategories(response.data.data);
                 // If categories are fetched successfully but array is empty
@@ -242,10 +242,10 @@ const Comparison = () => {
         try {
             let response;
             if (periodType === 'month') {
-                response = await axios.get(`http://localhost:3000/expense/get-expense-bycategory/${userId}/${selectedYear}/${selectedMonth}/${selectedCategory}`);
+                response = await axios.get(`https://xpensa.onrender.com/expense/get-expense-bycategory/${userId}/${selectedYear}/${selectedMonth}/${selectedCategory}`);
             } else {
                 // For yearly comparison
-                response = await axios.get(`http://localhost:3000/expense/get-expense-byyear/${userId}/${selectedYear}`);
+                response = await axios.get(`https://xpensa.onrender.com/expense/get-expense-byyear/${userId}/${selectedYear}`);
 
                 // Filter the response to only include the selected category
                 if (response.data && response.data.data) {
@@ -356,7 +356,7 @@ const Comparison = () => {
 
     return (
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }} className="comparison-container">
-            
+
             <h2 className="heading">Expense Category Comparison</h2>
 
             {error && (

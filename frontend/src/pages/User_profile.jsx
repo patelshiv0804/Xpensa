@@ -2,6 +2,15 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/Dashboard_styles/user_profile.module.css";
 import Profile from "../component/Dashboard_component/Profile";
+import total_expense_logo from "../../logos/total_expense.png";
+import expense_limit_logo from "../../logos/budget_limit.png";
+import expense_analysis_logo from "../../logos/analysis.png";
+import expense_prediction_logo from "../../logos/future_prediction.png";
+import export_receipt_logo from "../../logos/export_pdf.png";
+import comparison_logo from "../../logos/comparison.png";
+import logout_logo from "../../logos/logout.png";
+import notification_logo from "../../logos/notification_setting.png";
+
 export default function User_profile({ onSectionChange, isVisible }) {
     const location = useLocation();
     const [activeButton, setActiveButton] = useState("total_expense");
@@ -43,7 +52,7 @@ export default function User_profile({ onSectionChange, isVisible }) {
                 className={`${styles.inner_container} ${activeButton === "total_expense" ? styles.active : ""}`}
                 onClick={() => handleButtonClick("total_expense")}
             >
-                <img className={styles.image} src="logos/total_expense.png" alt="Expenses" />
+                <img className={styles.image} src={total_expense_logo} alt="Expenses" />
                 <p>Total Expenses</p>
             </div>
 
@@ -51,7 +60,7 @@ export default function User_profile({ onSectionChange, isVisible }) {
                 className={`${styles.inner_container} ${activeButton === "expense_limit" ? styles.active : ""}`}
                 onClick={() => handleButtonClick("expense_limit")}
             >
-                <img className={styles.image} src="logos/budget_limit.png" alt="limit" />
+                <img className={styles.image} src={expense_limit_logo} alt="limit" />
                 <p>Expense Limit</p>
             </div>
 
@@ -59,7 +68,7 @@ export default function User_profile({ onSectionChange, isVisible }) {
                 className={`${styles.inner_container} ${activeButton === "expense_analysis" ? styles.active : ""}`}
                 onClick={() => handleButtonClick("expense_analysis")}
             >
-                <img className={styles.image} src="logos/analysis.png" alt="Analysis" />
+                <img className={styles.image} src={expense_analysis_logo} alt="Analysis" />
                 <p>Expense Analysis</p>
             </div>
 
@@ -67,7 +76,7 @@ export default function User_profile({ onSectionChange, isVisible }) {
                 className={`${styles.inner_container} ${activeButton === "expense_prediction" ? styles.active : ""}`}
                 onClick={() => handleButtonClick("expense_prediction")}
             >
-                <img className={styles.image} src="logos/future_prediction.png" alt="Analysis" />
+                <img className={styles.image} src={expense_prediction_logo} alt="Analysis" />
                 <p>future prediction</p>
             </div>
 
@@ -75,7 +84,7 @@ export default function User_profile({ onSectionChange, isVisible }) {
                 className={`${styles.inner_container} ${activeButton === "export_receipt" ? styles.active : ""}`}
                 onClick={() => handleButtonClick("export_receipt")}
             >
-                <img className={styles.image} src="logos/export_pdf.png" alt="Export" />
+                <img className={styles.image} src={export_receipt_logo} alt="Export" />
                 <p>Export Receipt</p>
             </div>
 
@@ -83,7 +92,7 @@ export default function User_profile({ onSectionChange, isVisible }) {
                 className={`${styles.inner_container} ${activeButton === "comparison" ? styles.active : ""}`}
                 onClick={() => handleButtonClick("comparison")}
             >
-                <img className={styles.image} src="logos/comparison.png" alt="Comparison" />
+                <img className={styles.image} src={comparison_logo} alt="Comparison" />
                 <p>Comparison</p>
             </div>
 
@@ -93,14 +102,14 @@ export default function User_profile({ onSectionChange, isVisible }) {
             >
                 <img
                     className={styles.image}
-                    src="logos/notification_setting.png"
+                    src={notification_logo}
                     alt="Notifications"
                 />
                 <p>Notification Settings</p>
             </div>
 
             <div className={styles.logout_container}>
-                <img className={styles.logout_icon} src="logos/logout.png" alt="Logout" />
+                <img className={styles.logout_icon} src={logout_logo} alt="Logout" />
                 <button className={styles.logout} onClick={handleLogoutClick}>
                     Logout
                 </button>

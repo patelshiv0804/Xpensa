@@ -25,7 +25,7 @@ const EditExpenseModal = ({ expense, onClose, userId }) => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/expense/get-categories/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-categories/${userId}`);
             if (response.data && response.data.data) {
                 setCategories(response.data.data);
             }
@@ -41,7 +41,7 @@ const EditExpenseModal = ({ expense, onClose, userId }) => {
         }
 
         try {
-            const response = await axios.get(`http://localhost:3000/expense/get-categories/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/expense/get-categories/${userId}`);
             if (response.data && response.data.data) {
                 const categoryObj = response.data.data.find(cat => cat.cid === expense.category_id);
                 if (categoryObj) {
@@ -85,7 +85,7 @@ const EditExpenseModal = ({ expense, onClose, userId }) => {
         setError(null);
 
         try {
-            await axios.put('http://localhost:3000/expense/edit', formData);
+            await axios.put('https://xpensa.onrender.com/expense/edit', formData);
             onClose();
         } catch (err) {
             setError('Failed to update expense. Please try again.');

@@ -31,7 +31,7 @@ export default function Signup_details({ setShowLoginModal, setShowSignupModal }
             const decodedToken = jwtDecode(credential);
             console.log(decodedToken);
 
-            const response = await handleApiCall("http://localhost:3000/user/google-login", { token: credential });
+            const response = await handleApiCall("https://xpensa.onrender.com/user/google-login", { token: credential });
 
             if (response && response.status === 200) {
                 alert("Google Login Successful!");
@@ -55,7 +55,7 @@ export default function Signup_details({ setShowLoginModal, setShowSignupModal }
         }
 
         try {
-            const response = await fetch("http://localhost:3000/user/register", {
+            const response = await fetch("https://xpensa.onrender.com/user/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

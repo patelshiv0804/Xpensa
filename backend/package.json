@@ -25,7 +25,7 @@
     "mysql2": "^3.13.0",
     "nodemailer": "^6.10.0",
     "pdfkit": "^0.16.0",
-    "puppeteer": "^24.6.0",
+    "puppeteer": "^19.0.0",
     "tesseract.js": "^6.0.0",
     "winston": "^3.17.0"
   }
