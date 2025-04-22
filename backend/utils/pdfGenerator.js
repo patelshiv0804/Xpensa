@@ -72,8 +72,8 @@
 const fs = require('fs');
 const path = require('path');
 const Handlebars = require('handlebars');
-const fetch = require('node-fetch'); // Only needed if using Node.js < 18
 const { writeFile } = require('fs/promises');
+
 
 Handlebars.registerHelper('json', function (context) {
   return JSON.stringify(context);
@@ -123,7 +123,7 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        html, // sending rendered HTML
+        html,
         options: {
           format: 'A4',
           printBackground: true,
