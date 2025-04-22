@@ -53,11 +53,12 @@
       color: white;
     }
 
-  canvas {
-  max-width: 800px;
-  margin: auto;
-  height: 450px; /* increase to give more room for labels */
+    canvas {
+  width: 100% !important;
+  height: 600px !important;
+  max-width: none;
   display: block;
+  margin: auto;
 }
 
 
@@ -122,7 +123,10 @@
 
   <div class="section">
     <h3>Category-wise Expense Distribution</h3>
-    <canvas id="expenseChart"></canvas>
+    <div style="height: 600px;">
+      <canvas id="expenseChart"></canvas>
+    </div>
+    
   </div>
 
   <div class="section page-break">
@@ -182,8 +186,9 @@
 
     const options = {
   responsive: true,
+  maintainAspectRatio: false,
   layout: {
-    padding: 40, // adds space around the chart to avoid clipping
+    padding: 40,
   },
   plugins: {
     legend: {
@@ -205,7 +210,7 @@
       align: 'end',
       anchor: 'end',
       offset: 16,
-      clamp: true, // prevents labels from overflowing the canvas
+      clamp: true,
       formatter: function (value, context) {
         const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
         const label = context.chart.data.labels[context.dataIndex];
@@ -226,7 +231,6 @@
     }
   }
 };
-
 
     new Chart(ctx, {
       type: 'pie',
