@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <title>Expense Report</title>
@@ -11,12 +10,10 @@
       @page {
         margin: 40px 20px;
       }
-
       body {
         margin: 0;
       }
     }
-
     body {
       font-family: Arial, sans-serif;
       background-color: #fdf7f1;
@@ -43,8 +40,7 @@
       margin-top: 10px;
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid #ccc;
       padding: 8px;
       text-align: left;
@@ -58,10 +54,9 @@
 
     #expenseChart {
       height: 400px;
-      width: 600px;
+      width: 100%;
       margin: auto;
     }
-
 
     .report-header {
       display: flex;
@@ -97,7 +92,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <div class="report-header">
@@ -113,7 +107,7 @@
     <h3>Top Spending Categories</h3>
     <ul>
       {{#each topCategories}}
-      <li>{{category}}: ₹{{amount}}</li>
+        <li>{{category}}: ₹{{amount}}</li>
       {{/each}}
     </ul>
   </div>
@@ -136,12 +130,12 @@
       </thead>
       <tbody>
         {{#each breakdown}}
-        <tr>
-          <td>{{date}}</td>
-          <td>{{category}}</td>
-          <td>{{description}}</td>
-          <td>{{amount}}</td>
-        </tr>
+          <tr>
+            <td>{{date}}</td>
+            <td>{{category}}</td>
+            <td>{{description}}</td>
+            <td>{{amount}}</td>
+          </tr>
         {{/each}}
       </tbody>
     </table>
@@ -157,36 +151,34 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-      const labels = {{{ chartLabels }
-    }}; // e.g., ["Education", "Savings", ...]
-    const values = {{{ chartData }}};   // e.g., [22, 9, 26, ...]
+      const labels = {{{chartLabels}}}; // e.g., ["Education", "Savings", ...]
+      const values = {{{chartData}}};   // e.g., [22, 9, 26, ...]
 
-    const chartData = [['Category', 'Amount']];
-    for (let i = 0; i < labels.length; i++) {
-      chartData.push([labels[i], values[i]]);
-    }
+      const chartData = [['Category', 'Amount']];
+      for (let i = 0; i < labels.length; i++) {
+        chartData.push([labels[i], values[i]]);
+      }
 
-    const data = google.visualization.arrayToDataTable(chartData);
+      const data = google.visualization.arrayToDataTable(chartData);
 
-    const options = {
-      title: 'Category-wise Expense Distribution',
-      pieHole: 0.4,
-      legend: {
-        position: 'bottom',
-        textStyle: { fontSize: 13, color: '#514A4A' }
-      },
-      chartArea: { width: '90%', height: '75%' },
-      pieSliceText: 'percentage',
-      colors: [
-        '#4CAF50', '#36A2EB', '#FDAF39',
-        '#FF9800', '#9C27B0', '#FF6384', '#8BC34A'
-      ],
-    };
+      const options = {
+        title: 'Category-wise Expense Distribution',
+        pieHole: 0.4,
+        legend: {
+          position: 'bottom',
+          textStyle: { fontSize: 13, color: '#514A4A' }
+        },
+        chartArea: { width: '90%', height: '75%' },
+        pieSliceText: 'percentage',
+        colors: [
+          '#4CAF50', '#36A2EB', '#FDAF39',
+          '#FF9800', '#9C27B0', '#FF6384', '#8BC34A'
+        ],
+      };
 
-    const chart = new google.visualization.PieChart(document.getElementById('expenseChart'));
-    chart.draw(data, options);
+      const chart = new google.visualization.PieChart(document.getElementById('expenseChart'));
+      chart.draw(data, options);
     }
   </script>
 </body>
-
 </html>
