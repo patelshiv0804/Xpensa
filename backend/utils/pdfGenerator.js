@@ -109,6 +109,7 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
   // Launch Puppeteer without specifying executablePath
   const browser = await puppeteer.launch({
     headless: true,
+    executablePath: '/opt/render/.cache/puppeteer/chrome/linux-1045629/chrome-linux/chrome',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
