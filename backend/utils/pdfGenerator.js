@@ -68,20 +68,28 @@
 // };
 
 // module.exports = generateExpensePDF;
-const puppeteer = require('puppeteer');
+
 const fs = require('fs');
 const path = require('path');
 const Handlebars = require('handlebars');
+const fetch = require('node-fetch'); // Only needed if using Node.js < 18
+const { writeFile } = require('fs/promises');
 
 Handlebars.registerHelper('json', function (context) {
   return JSON.stringify(context);
 });
 
+const BROWSERLESS_TOKEN = process.env.BROWSERLESS_TOKEN;
+const BROWSERLESS_URL = `https://production-sfo.browserless.io/pdf?token=${BROWSERLESS_TOKEN}`;
+
 const generateExpensePDF = async (userExpenseReport, outputPath) => {
   try {
     console.log('Starting PDF generation...');
-    
-    const templateHtml = fs.readFileSync(path.join(__dirname, '../templates/expense-report-template.html'), 'utf8');
+
+    const templateHtml = fs.readFileSync(
+      path.join(__dirname, '../templates/expense-report-template.html'),
+      'utf8'
+    );
     const template = Handlebars.compile(templateHtml);
 
     const breakdown = userExpenseReport.breakdown;
@@ -108,35 +116,30 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
       imageSrc: base64Image,
     });
 
-    console.log('Launching browser with path:', process.env.CHROME_PATH || '/usr/bin/chromium-browser');
-    
-    const browser = await puppeteer.launch({
-      headless: true,
-      executablePath: process.env.CHROME_PATH || '/usr/bin/chromium-browser',
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--single-process'
-      ]
+    const response = await fetch(BROWSERLESS_URL, {
+      method: 'POST',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        html, // sending rendered HTML
+        options: {
+          format: 'A4',
+          printBackground: true,
+        },
+      }),
     });
 
-    console.log('Browser launched successfully');
-    const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Browserless API Error: ${errorText}`);
+    }
 
-    await page.waitForFunction(() => {
-      return document.querySelector('#expenseChart') !== null;
-    });
+    const buffer = await response.arrayBuffer();
+    await writeFile(outputPath, Buffer.from(buffer));
 
-    await page.pdf({
-      path: outputPath,
-      format: 'A4',
-      printBackground: true,
-    });
-    console.log(`PDF saved to: ${outputPath}`);
-
-    await browser.close();
+    console.log(`PDF saved as ${outputPath}`);
     return true;
   } catch (error) {
     console.error('PDF generation error:', error);
