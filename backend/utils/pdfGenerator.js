@@ -69,7 +69,6 @@
 
 // module.exports = generateExpensePDF;
 
-
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
@@ -108,20 +107,9 @@ const generateExpensePDF = async (userExpenseReport, outputPath) => {
     imageSrc: base64Image,
   });
 
-  // Resolve Puppeteer Chrome executable path dynamically
-  const chromePath = path.join(
-    os.homedir(),
-    '.cache',
-    'puppeteer',
-    'chrome',
-    'win64-135.0.7049.42',
-    'chrome-win64',
-    'chrome.exe'
-  );
-
+  // Launch Puppeteer without specifying the executablePath
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: chromePath,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
