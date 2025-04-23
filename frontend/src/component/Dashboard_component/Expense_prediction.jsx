@@ -13,15 +13,16 @@ import {
     ComposedChart
 } from 'recharts';
 import { Calendar, TrendingUp, DollarSign, AlertCircle, RefreshCw } from 'lucide-react';
-import '../../styles/Dashboard_styles/Expense_prediction.css';
+import '../../styles/Dashboard_styles/Expense_Prediction.css';
 
 const Expense_prediction = () => {
     const [predictionData, setPredictionData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-    const userId = localStorage.getItem('userId') || '1';
     const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(-1); // Default to "All" with value -1
+
+    const userId = localStorage.getItem('userId') || '1';
 
     const fetchCategories = async () => {
         try {
@@ -37,7 +38,10 @@ const Expense_prediction = () => {
         setError(null);
 
         try {
-            const response = await axios.get(`https://xpensa.onrender.com/expense/get-future-expense/${userId}`);
+            // Always use the same endpoint structure but pass -1 as cid for "All categories"
+            const endpoint = `https://xpensa.onrender.com/expense/get-future-expense/${userId}/${selectedCategory}`;
+
+            const response = await axios.get(endpoint);
             const data = response.data.data;
 
             // Combine historical and prediction data for visualization
@@ -76,19 +80,19 @@ const Expense_prediction = () => {
         }
     };
 
-
     useEffect(() => {
         fetchCategories();
     }, [userId]);
 
     useEffect(() => {
         fetchPredictionData();
-    }, [userId]);
+    }, [userId, selectedCategory]);
 
+    // Handle category selection change
     const handleCategoryChange = (e) => {
         setSelectedCategory(Number(e.target.value));
     };
-    // Helper to format currency
+
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -184,6 +188,7 @@ const Expense_prediction = () => {
                 </p>
             </div>
 
+            {/* Category Selector */}
             <div className="category-selector">
                 <label htmlFor="category-select" className="category-label">Select Category:</label>
                 <select
