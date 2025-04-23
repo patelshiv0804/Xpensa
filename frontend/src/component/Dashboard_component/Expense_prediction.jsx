@@ -197,7 +197,7 @@ const Expense_prediction = () => {
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                 >
-                    <option value={-1}>All Categories</option>
+                    <option value={0}>All Categories</option>
                     {categories.map(category => (
                         <option key={category.cid} value={category.cid}>
                             {category.category_name}
