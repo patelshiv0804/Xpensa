@@ -384,7 +384,7 @@
 .image-preview-container {
     position: relative;
     max-width: 90%;
-    max-height: 90%;
+    max-height: 100%;
     background: white;
     border-radius: 8px;
     overflow: hidden;

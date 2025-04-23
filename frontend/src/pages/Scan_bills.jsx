@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar_logout from "../component/Navbar_logout";
 import styles from "../styles/Scan_bills.module.css";
 import axios from "axios";
+import upload_image_logo from '../../logos/upload_image.png' ;
 
 export default function ScanBills() {
     const predefinedCategories = [
@@ -231,7 +232,7 @@ export default function ScanBills() {
                             </div>
                         ) : (
                             <>
-                                <img className={styles.uploadIcon} src="/logos/upload_image.png" alt="Upload" />
+                                <img className={styles.uploadIcon} src={upload_image_logo} alt="Upload" />
                                 <p className={styles.uploadText}>
                                     Drag & Drop or Click to Upload
                                 </p>
