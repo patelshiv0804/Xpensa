@@ -20,9 +20,9 @@ const Expense_prediction = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(-1); // Default to "All" with value -1
+    const [selectedCategory, setSelectedCategory] = useState(0); // Default to "All" with value 0
 
-    const userId = localStorage.getItem('userId') || '1';
+    const userId = localStorage.getItem('userId');
 
     const fetchCategories = async () => {
         try {
