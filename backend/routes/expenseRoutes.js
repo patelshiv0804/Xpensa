@@ -39,6 +39,6 @@ router.get('/get-expense-bycategory/:userId/:year/:month/:cid', expenseControlle
 router.get('/get-expense/:userId', expenseController.getExpenseByUserId);
 router.get('/get-report-byyear/:userId/:year', expenseController.getExpenseReportByYear);
 router.get('/get-report-bymonth/:userId/:year/:month', expenseController.getExpenseReportByMonth);
-router.get('/get-future-expense/:userId', expenseController.getFutureExpense);
+router.get('/get-future-expense/:userId/:cid', expenseController.getFutureExpense);
 
 module.exports = router;
