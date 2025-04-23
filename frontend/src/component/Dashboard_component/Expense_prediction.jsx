@@ -20,12 +20,12 @@ const Expense_prediction = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-
     const userId = localStorage.getItem('userId') || '1';
+    const [categories, setCategories] = useState([]);
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/category/get/${userId}`);
+            const response = await axios.get(`https://xpensa.onrender.com/category/get/${userId}`);
             setCategories(response.data.data || []);
         } catch (err) {
             console.error('Error fetching categories:', err);
