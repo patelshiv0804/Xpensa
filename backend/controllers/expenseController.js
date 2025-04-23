@@ -565,7 +565,7 @@ const getFutureExpense = async (req, res, next) => {
     let pythonScriptPath;
     let args = [];
 
-    if (cid === '-1') {
+    if (cid == 0) {
       // All categories
       pythonScriptPath = path.join(__dirname, '../python_script/predict.py');
       args = [pythonScriptPath, userId];

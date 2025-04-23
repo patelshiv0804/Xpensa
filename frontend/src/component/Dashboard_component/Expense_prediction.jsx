@@ -20,9 +20,9 @@ const Expense_prediction = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(-1); // Default to "All" with value -1
+    const [selectedCategory, setSelectedCategory] = useState(0); // Default to "All" with value 0
 
-    const userId = localStorage.getItem('userId') || '1';
+    const userId = localStorage.getItem('userId');
 
     const fetchCategories = async () => {
         try {
@@ -197,7 +197,7 @@ const Expense_prediction = () => {
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                 >
-                    <option value={-1}>All Categories</option>
+                    <option value={0}>All Categories</option>
                     {categories.map(category => (
                         <option key={category.cid} value={category.cid}>
                             {category.category_name}
