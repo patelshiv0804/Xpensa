@@ -32,6 +32,19 @@
     border-radius: 2px;
 }
 
+
+.category-selector {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+}
+
 /* Header styles */
 /* .prediction-title {
     font-size: 1.5rem;

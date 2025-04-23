@@ -554,51 +554,54 @@ const getExpenseReportByMonth = async (req, res, next) => {
 };
 
 
-
 const getFutureExpense = async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const { userId, cid } = req.params;
 
     if (!userId) {
       return res.status(400).json({ message: 'User ID is required' });
     }
 
-    const pythonScriptPath = path.join(__dirname, '../python_script/predict.py');
+    let pythonScriptPath;
+    let args = [];
 
-    // Spawn a new Python process
-    const pythonProcess = spawn('python', [pythonScriptPath, userId]);
+    if (cid === '-1') {
+      // All categories
+      pythonScriptPath = path.join(__dirname, '../python_script/predict.py');
+      args = [pythonScriptPath, userId];
+    } else {
+      // Specific category
+      pythonScriptPath = path.join(__dirname, '../python_script/predict_categorywise.py');
+      args = [pythonScriptPath, userId, cid];
+    }
+
+    const pythonProcess = spawn('python', args);
 
     let dataString = '';
     let errorString = '';
 
-    // Collect data from the Python script
     pythonProcess.stdout.on('data', (data) => {
       dataString += data.toString();
     });
 
-    // Collect any error messages
     pythonProcess.stderr.on('data', (data) => {
       errorString += data.toString();
     });
 
-    // Handle process completion
     pythonProcess.on('close', (code) => {
       if (code !== 0) {
-        logger.error(`Python script exited with code ${code}.Error: ${errorString}`);
+        logger.error(`Python script exited with code ${code}. Error: ${errorString}`);
         return res.status(500).json({ message: 'Error generating expense predictions', error: errorString });
       }
 
       try {
-        // Try to parse the output as JSON
         const predictionData = JSON.parse(dataString);
 
-        // Check if there's an error message in the response
         if (predictionData.error) {
           logger.warn(`Prediction script returned an error: ${predictionData.error}`);
           return res.status(404).json({ message: predictionData.error });
         }
 
-        // Return the prediction data
         return res.status(200).json({
           message: 'Future expense predictions fetched successfully',
           data: predictionData

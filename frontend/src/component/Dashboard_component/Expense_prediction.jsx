@@ -23,6 +23,15 @@ const Expense_prediction = () => {
 
     const userId = localStorage.getItem('userId') || '1';
 
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/category/get/${userId}`);
+            setCategories(response.data.data || []);
+        } catch (err) {
+            console.error('Error fetching categories:', err);
+        }
+    };
+
     const fetchPredictionData = async () => {
         setLoading(true);
         setError(null);
@@ -67,10 +76,18 @@ const Expense_prediction = () => {
         }
     };
 
+
+    useEffect(() => {
+        fetchCategories();
+    }, [userId]);
+
     useEffect(() => {
         fetchPredictionData();
     }, [userId]);
 
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(Number(e.target.value));
+    };
     // Helper to format currency
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-US', {
@@ -165,6 +182,23 @@ const Expense_prediction = () => {
                 <p className="prediction-subtitle">
                     Based on your past spending patterns, here's a prediction of your monthly expenses for the next 6 months.
                 </p>
+            </div>
+
+            <div className="category-selector">
+                <label htmlFor="category-select" className="category-label">Select Category:</label>
+                <select
+                    id="category-select"
+                    className="category-combobox"
+                    value={selectedCategory}
+                    onChange={handleCategoryChange}
+                >
+                    <option value={-1}>All Categories</option>
+                    {categories.map(category => (
+                        <option key={category.cid} value={category.cid}>
+                            {category.category_name}
+                        </option>
+                    ))}
+                </select>
             </div>
 
             {/* Stats cards */}
