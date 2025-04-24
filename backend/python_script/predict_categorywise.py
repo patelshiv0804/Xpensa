@@ -38,36 +38,48 @@ def generate_monthly_trend_data(user_id, cid):
     df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
     df = df.dropna(subset=['amount'])
 
-    # Create month-year column for grouping
-    df['month_year'] = df['date'].dt.strftime('%Y-%m')
+    # Group by month
+    df['month_year'] = df['date'].dt.to_period('M').astype(str)
     monthly_data = df.groupby('month_year')['amount'].sum().reset_index()
     monthly_data = monthly_data.sort_values('month_year').reset_index(drop=True)
 
-    # Add numeric index for modeling with new update
+    # Feature engineering
     monthly_data['month_index'] = range(len(monthly_data))
+    monthly_data['year'] = pd.to_datetime(monthly_data['month_year']).dt.year
+    monthly_data['month'] = pd.to_datetime(monthly_data['month_year']).dt.month
 
-    # Prepare training data for XGBoost
-    X = monthly_data[['month_index']]
+    # Prepare X and y
+    X = monthly_data[['month_index', 'year', 'month']]
     y = monthly_data['amount']
-    model = xgb.XGBRegressor(n_estimators=500, learning_rate=0.05, early_stopping_rounds=10)
-    model.fit(X, y, eval_set=[(X, y)], verbose=False)
+
+    # Fit model
+    model = xgb.XGBRegressor(n_estimators=500, learning_rate=0.05)
+    model.fit(X, y)
 
     # Predict for next 6 months
     last_month_index = monthly_data['month_index'].iloc[-1]
-    future_indices = np.array([last_month_index + i + 1 for i in range(6)]).reshape(-1, 1)
-    future_amounts = model.predict(future_indices)
-    future_amounts = [round(float(val), 2) for val in future_amounts]
-
-    # Future month labels
     last_date = pd.to_datetime(monthly_data['month_year'].iloc[-1] + '-01')
-    future_dates = [(last_date + pd.DateOffset(months=i)).strftime('%Y-%m') for i in range(1, 7)]
 
-    # Output in original format
+    future_indices = [last_month_index + i + 1 for i in range(6)]
+    future_dates = [(last_date + pd.DateOffset(months=i)).strftime('%Y-%m') for i in range(1, 7)]
+    future_years = [(last_date + pd.DateOffset(months=i)).year for i in range(1, 7)]
+    future_months = [(last_date + pd.DateOffset(months=i)).month for i in range(1, 7)]
+
+    future_df = pd.DataFrame({
+        'month_index': future_indices,
+        'year': future_years,
+        'month': future_months
+    })
+
+    future_preds = model.predict(future_df)
+    future_preds = [round(float(val), 2) for val in future_preds]
+
+    # Final output
     output = {
         "historical_months": monthly_data['month_year'].tolist(),
         "historical_amounts": monthly_data['amount'].tolist(),
         "predicted_months": future_dates,
-        "predicted_amounts": future_amounts
+        "predicted_amounts": future_preds
     }
 
     print(json.dumps(output))
