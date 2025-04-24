@@ -13,7 +13,7 @@ import {
     ComposedChart
 } from 'recharts';
 import { Calendar, TrendingUp, DollarSign, AlertCircle, RefreshCw } from 'lucide-react';
-import '../../styles/Dashboard_styles/Expense_Prediction.css';
+import '../../styles/Dashboard_styles/Expense_prediction.css';
 
 const Expense_prediction = () => {
     const [predictionData, setPredictionData] = useState(null);
