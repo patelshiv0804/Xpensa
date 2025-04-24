@@ -43,7 +43,7 @@ def generate_monthly_trend_data(user_id, cid):
     monthly_data = df.groupby('month_year')['amount'].sum().reset_index()
     monthly_data = monthly_data.sort_values('month_year').reset_index(drop=True)
 
-    # Add numeric index for modeling
+    # Add numeric index for modeling with new update
     monthly_data['month_index'] = range(len(monthly_data))
 
     # Prepare training data for XGBoost
