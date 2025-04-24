@@ -76,6 +76,7 @@
     
 #     user_id = sys.argv[1]
 #     generate_trend_data(user_id)
+
 import mysql.connector
 import pandas as pd
 import numpy as np
@@ -85,6 +86,8 @@ import xgboost as xgb
 from sklearn.metrics import mean_squared_error
 
 def generate_monthly_trend_data(user_id):
+    connection = None
+    cursor = None
     # 1. Fetch real data from MySQL
     try:
         connection = mysql.connector.connect(
@@ -96,7 +99,7 @@ def generate_monthly_trend_data(user_id):
         )
         cursor = connection.cursor(dictionary=True)
         query = "SELECT amount, date FROM expense_record WHERE user_id = %s"
-        cursor.execute(query, (user_id))
+        cursor.execute(query, (user_id,))
         rows = cursor.fetchall()
     except mysql.connector.Error as err:
         print(json.dumps({"error": str(err)}))
@@ -211,11 +214,10 @@ def create_features(df):
     return df
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print(json.dumps({"error": "Usage: script.py <user_id> <category_id>"}))
+    if len(sys.argv) != 2:
+        print(json.dumps({"error": "Usage: script.py <user_id>"}))
         sys.exit(1)
     
     user_id = sys.argv[1]
-    cid = sys.argv[2]
-    result = generate_monthly_trend_data(user_id, cid)
+    result = generate_monthly_trend_data(user_id)
     print(json.dumps(result))
