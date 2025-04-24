@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import json
 import sys
-from sklearn.linear_model import LinearRegression
+import xgboost as xgb
 
 def generate_monthly_trend_data(user_id, cid):
     try:
@@ -40,37 +40,29 @@ def generate_monthly_trend_data(user_id, cid):
 
     # Create month-year column for grouping
     df['month_year'] = df['date'].dt.strftime('%Y-%m')
-
-    # Group by month and sum the expenses
     monthly_data = df.groupby('month_year')['amount'].sum().reset_index()
+    monthly_data = monthly_data.sort_values('month_year').reset_index(drop=True)
 
-    # Sort by month-year to ensure chronological order
-    monthly_data = monthly_data.sort_values('month_year')
-
-    # Create numerical feature for modeling (months since the first month)
+    # Add numeric index for modeling
     monthly_data['month_index'] = range(len(monthly_data))
 
-    # Train linear regression model
-    X = monthly_data['month_index'].values.reshape(-1, 1)
-    y = monthly_data['amount'].values
-    model = LinearRegression()
-    model.fit(X, y)
+    # Prepare training data for XGBoost
+    X = monthly_data[['month_index']]
+    y = monthly_data['amount']
+    model = xgb.XGBRegressor(n_estimators=500, learning_rate=0.05, early_stopping_rounds=10)
+    model.fit(X, y, eval_set=[(X, y)], verbose=False)
 
-    # Predict next 6 months
-    last_month_index = monthly_data['month_index'].max()
-    future_indices = np.array([last_month_index + i + 1 for i in range(6)])
-    future_amounts = model.predict(future_indices.reshape(-1, 1))
+    # Predict for next 6 months
+    last_month_index = monthly_data['month_index'].iloc[-1]
+    future_indices = np.array([last_month_index + i + 1 for i in range(6)]).reshape(-1, 1)
+    future_amounts = model.predict(future_indices)
+    future_amounts = [round(float(val), 2) for val in future_amounts]
 
-    # Generate future month-year labels
+    # Future month labels
     last_date = pd.to_datetime(monthly_data['month_year'].iloc[-1] + '-01')
-    future_dates = [
-        (last_date + pd.DateOffset(months=i)).strftime('%Y-%m') for i in range(1, 7)
-    ]
+    future_dates = [(last_date + pd.DateOffset(months=i)).strftime('%Y-%m') for i in range(1, 7)]
 
-    # Round predicted amounts
-    future_amounts = [round(amount, 2) for amount in future_amounts]
-
-    # Prepare output
+    # Output in original format
     output = {
         "historical_months": monthly_data['month_year'].tolist(),
         "historical_amounts": monthly_data['amount'].tolist(),
@@ -78,7 +70,6 @@ def generate_monthly_trend_data(user_id, cid):
         "predicted_amounts": future_amounts
     }
 
-    # Print as JSON
     print(json.dumps(output))
 
 
