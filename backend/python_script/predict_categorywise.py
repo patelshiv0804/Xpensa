@@ -97,7 +97,7 @@ def generate_monthly_trend_data(user_id, cid):
     y_test = test[TARGET]
     
     # Train the model
-    reg = xgb.XGBRegressor(n_estimators=500, early_stopping_rounds=10, learning_rate=0.05)
+    reg = xgb.XGBRegressor(n_estimators=500, early_stopping_rounds=50, learning_rate=0.05)
     reg.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
     
     # 5. Generate predictions for the next 6 months
