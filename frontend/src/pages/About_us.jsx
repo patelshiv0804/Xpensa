@@ -199,7 +199,7 @@ export default function About_us() {
                 </div>
             </div>
 
-            {/* Testimonials */}
+            
             <div className={styles.testimonials_section}>
                 <h2>What Our Users Say</h2>
                 <div className={styles.testimonials_container}>
@@ -233,13 +233,13 @@ export default function About_us() {
             </div>
 
             {/* Contact CTA */}
-            <div className={styles.contact_section}>
+            {/* <div className={styles.contact_section}>
                 <div className={styles.contact_container}>
                     <h2>Ready to Take Control of Your Finances?</h2>
                     <p>Join thousands of users who are already managing their finances more effectively with our app.</p>
                     <button className={styles.cta_button}>Get Started Today</button>
                 </div>
-            </div>
+            </div> */}
 
             <Animated_gif />
         </>

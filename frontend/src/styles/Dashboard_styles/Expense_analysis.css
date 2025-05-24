@@ -45,6 +45,7 @@ h2 {
     justify-content: center;
     margin-bottom: 30px;
     gap: 20px;
+    background-color: #ffeede;
 }
 
 .filter-item {
@@ -73,7 +74,7 @@ h2 {
 }
 
 .chart-container {
-    background-color: white;
+    background-color: #ffeede;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -113,6 +114,7 @@ h2 {
 }
 
 /* Budget chart styling */
+
 .budget-container {
     display: flex;
     flex-direction: column;
@@ -147,7 +149,7 @@ h2 {
 }
 
 .budget-progress.safe {
-    background-color: #4caf50;
+    background-color: #fdaf39;
 }
 
 .budget-progress.warning {

@@ -2073,3 +2073,6 @@
 =======
 >>>>>>> f606e638eaf8a32c4395d847cf906909cf84e96f
 >>>>>>> 2ead752e03afbd15ff73eb041f43147378577866
+{"level":"info","message":"Database connection successful","timestamp":"2025-05-24T04:02:11.484Z"}
+{"level":"info","message":"Connected to MySQL database","timestamp":"2025-05-24T04:02:11.488Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-05-24T04:02:11.491Z"}
