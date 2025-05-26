@@ -15,8 +15,7 @@ export default function Login({ setShowLoginModal, setShowSignupModal, setIsLogg
                 <Login_details
                     setShowLoginModal={setShowLoginModal}
                     setShowSignupModal={setShowSignupModal}
-                    setIsLoggedIn={setIsLoggedIn}
-                />
+                    setIsLoggedIn={setIsLoggedIn}/>
             </GoogleOAuthProvider>
         </div>
     );

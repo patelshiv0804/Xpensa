@@ -1,4 +1,172 @@
-.screen {
+/* .screen {
     position: relative;
 
+} */
+
+/* .dashboard_container {
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard_content {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    overflow: hidden;
+}
+
+.main_content {
+    width: calc(100% - 500px);
+    height: calc(100dvh - 60px);
+
+    overflow: auto;
+    transition: width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+    margin-left: 0;
+}
+
+.main_content.expanded {
+    width: 100%;
+    margin-left: 0;
+}
+
+.screen {
+    position: relative;
+    padding: 20px;
+    min-height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .main_content {
+        width: 100%;
+    }
+
+    .main_content.expanded {
+        width: 100%;
+    }
+}
+
+.mobile_backdrop {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile_backdrop {
+        display: block;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 60px);
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .mobile_backdrop.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+} */
+
+
+
+.dashboard_container {
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard_content {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    /* Add relative positioning */
+}
+
+.main_content {
+    width: calc(100% - 360px);
+    height: calc(100dvh - 60px);
+    /* Adjust based on navbar height */
+    overflow: auto;
+    transition: all 0.3s ease-in-out;
+    margin-left: 360px;
+    /* Add margin to account for fixed sidebar */
+    display: flex;
+    justify-content: center;
+    /* Center content when sidebar is visible */
+}
+
+.main_content.expanded {
+    width: 100%;
+    margin-left: 0;
+    /* Remove margin when sidebar is hidden */
+    justify-content: center;
+    /* Keep content centered when sidebar is hidden */
+}
+
+.screen {
+    position: relative;
+    padding: 20px;
+    min-height: 100%;
+    width: 100%;
+    max-width: 1200px;
+    /* Optional: set max-width for better readability on large screens */
+    margin: 0 auto;
+    /* Center the screen content */
+}
+
+/* Tablet and Mobile responsiveness */
+@media screen and (max-width: 1024px) {
+    .main_content {
+        width: 100%;
+        margin-left: 0;
+        /* Remove margin on tablet/mobile */
+        justify-content: flex-start;
+        /* On tablet/mobile, align to start when sidebar is hidden */
+    }
+
+    .main_content.expanded {
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .screen {
+        padding: 15px;
+        /* Reduce padding on mobile */
+    }
+}
+
+.mobile_backdrop {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile_backdrop {
+        display: block;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 60px);
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .mobile_backdrop.visible {
+        opacity: 1;
+        visibility: visible;
+    }
 }

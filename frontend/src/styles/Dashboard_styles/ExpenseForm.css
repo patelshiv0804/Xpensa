@@ -35,7 +35,6 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    /* border-color: #4CAF50; */
     outline: none;
 }
 

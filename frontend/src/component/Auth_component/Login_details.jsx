@@ -19,7 +19,8 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
         try {
             const response = await axios.post(url, data);
             return response;
-        } catch (err) {
+        } 
+        catch (err) {
             console.error("API Error:", err.response?.data?.message || err.message);
             setError(err.response?.data?.message || "Something went wrong.");
             return null;
@@ -44,7 +45,8 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
                 localStorage.setItem('userId', response.data.userId)
                 localStorage.setItem('isLoggedIn', 'true');
                 window.location.href = '/';
-            } else {
+            } 
+            else {
                 setError(response.data.message || 'Login failed.');
             }
         } catch (err) {
@@ -89,9 +91,6 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
         }
     };
 
-
-
-
     return (
         <div className={styles.container}>
             <p className={styles.heading}>Log In</p>
@@ -124,19 +123,14 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
 
                 {error && <p className={styles.error}>{error}</p>}
 
-                {/* Login Button */}
                 <button className={styles.button_login} onClick={handleLogin}>
                     <p>Login</p>
                 </button>
-
-                {/* Forgot Password */}
                 <p className={styles.forgot} onClick={handleForgotPassword}>
                     Forgot Password?
                 </p>
-
                 <hr className={styles.line} />
 
-                {/* Signup Link */}
                 <p>
                     Don't have an account?{" "}
                     <span
@@ -151,7 +145,6 @@ export default function LoginDetails({ setShowLoginModal, setShowSignupModal }) 
                 </p>
             </div>
 
-            {/* Forgot Password Modal - OTP Verification */}
             {showForgotPassword && (
                 <div className={styles.overlay} onClick={() => setShowForgotPassword(false)}>
                     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>

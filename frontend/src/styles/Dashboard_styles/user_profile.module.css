@@ -1,4 +1,4 @@
-.container {
+/* .container {
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -217,5 +217,343 @@
         background: rgba(0, 0, 0, 0.5);
     }
 }
+ */
 
-/* Base container */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    background: #FBDDBF;
+    gap: 16px;
+    align-items: center;
+    height: calc(100vh - 60px);
+    /* Use calc for proper height calculation */
+    position: fixed;
+    left: 0;
+    top: 58px;
+    /* Adjust based on navbar height */
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+    z-index: 10;
+    padding: 20px 0;
+    /* Add padding for better spacing */
+    box-sizing: border-box;
+    /* Include padding in height calculation */
+}
+
+.container.visible {
+    left: 0;
+}
+
+.container.hidden {
+    left: -500px;
+}
+
+.inner_container {
+    color: #272727;
+    font-weight: 600;
+    background: #FFF0E2;
+    padding: 12px 16px;
+    width: 300px;
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    border-radius: 8px;
+    gap: 20px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    flex-shrink: 0;
+    /* Prevent items from shrinking */
+}
+
+.inner_container:hover {
+    background: #fdaf39;
+    color: white;
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.inner_container.active {
+    background: #fdaf39;
+    color: white;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateX(5px);
+}
+
+.image {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-left: 10px;
+    flex-shrink: 0;
+    /* Prevent image from shrinking */
+}
+
+.logout_container {
+    background: #FDAF39;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 20px;
+    width: 300px;
+    flex-shrink: 0;
+    /* Prevent logout container from shrinking */
+}
+
+.logout_container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logout_icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.logout {
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.logout_container:hover .logout {
+    color: #333;
+}
+
+/* Modal Styles */
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    min-width: 320px;
+    animation: popIn 0.3s ease-in-out forwards;
+}
+
+.modal h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+}
+
+.modal_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.confirm_btn {
+    background-color: #fdaf39;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.cancel_btn {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.confirm_btn:hover {
+    background-color: #e89b2a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cancel_btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.confirm_btn:active,
+.cancel_btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Mobile backdrop overlay */
+.mobile_backdrop {
+    display: none;
+}
+
+/* Tablet and Mobile Responsiveness */
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 350px;
+        position: fixed;
+        top: 60px;
+        left: -350px;
+        height: calc(100vh - 60px);
+        transition: left 0.3s ease-in-out;
+        z-index: 1001;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 0;
+        /* Reduce padding on mobile */
+        overflow-y: auto;
+        /* Ensure scrolling works on mobile */
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        /* Enable smooth scrolling on iOS */
+    }
+
+    .container.visible {
+        left: 0;
+    }
+
+    .container.hidden {
+        left: -350px;
+    }
+
+    /* Mobile backdrop when sidebar is visible */
+    .mobile_backdrop {
+        display: block;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 60px);
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .mobile_backdrop.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .inner_container,
+    .logout_container {
+        width: calc(100% - 40px);
+        margin: 0 20px;
+        flex-shrink: 0;
+        /* Prevent shrinking on mobile */
+    }
+
+    .modal {
+        margin: 0 20px;
+        width: calc(100% - 40px);
+        max-width: 400px;
+    }
+
+    .modal_buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .confirm_btn,
+    .cancel_btn {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        gap: 12px;
+        padding: 10px 0;
+        width: 320px;
+        /* Slightly smaller for very small screens */
+        left: -320px;
+    }
+
+    .container.visible {
+        left: 0;
+    }
+
+    .container.hidden {
+        left: -320px;
+    }
+
+    .inner_container {
+        padding: 10px 12px;
+        font-size: 14px;
+        width: calc(100% - 30px);
+        margin: 0 15px;
+    }
+
+    .image {
+        width: 24px;
+        height: 24px;
+    }
+
+    .logout_container {
+        padding: 10px 12px;
+        width: calc(100% - 30px);
+        margin: 20px 15px 0 15px;
+    }
+
+    .logout {
+        font-size: 14px;
+    }
+
+    .logout_icon {
+        width: 20px;
+        height: 20px;
+    }
+}
