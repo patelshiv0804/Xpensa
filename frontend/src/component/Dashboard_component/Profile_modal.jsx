@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../styles/Dashboard_styles/Profile_modal.module.css';
+import user_logo from '../../../logos/user.png';
+
 
 const Profile_modal = ({ isOpen, onClose }) => {
     const userId = localStorage.getItem('userId') || '1';
@@ -146,8 +148,8 @@ const Profile_modal = ({ isOpen, onClose }) => {
                         <div className={styles.profile_preview}>
                             <div className={styles.avatar_container}>
                                 <img
-                                    src={previewImage || "logos/user.png"}
-                                    alt="Profile"
+                                    src={{previewImage} || { user_logo }}
+
                                     className={styles.preview_avatar}
                                 />
                                 <label htmlFor="profile_img" className={styles.change_photo}>

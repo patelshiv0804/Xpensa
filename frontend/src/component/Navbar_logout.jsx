@@ -350,12 +350,13 @@ export default function Navbar_logout({ setIsLoggedIn, onMenuToggle, isProfileVi
                         <div className={styles.mobile_actions}>
                             <div className={styles.mobile_icon_group}>
                                 <div className={styles.notification_icon} onClick={handleNotificationClick}>
-                                    <img className={styles.notification} src="logos/notifications.png" alt="Notifications" />
+                                    <img className={styles.notification} src={notification_logo} alt="Notifications" />
                                 </div>
                                 <div className={styles.notification_icon} onClick={() => handleNavigation("/dashboard")}>
-                                    <img className={styles.notification} src="logos/profile.png" alt="Profile" />
+                                    <img className={styles.notification} src={profile_logo} alt="Profile" />
                                 </div>
                             </div>
+
 
                             <Button
                                 className={`${styles.button} ${styles.mobile_button}`}
