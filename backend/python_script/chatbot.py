@@ -80,7 +80,7 @@ import sys
 import json
 import time
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 # Set your Google Gemini API key
