@@ -115,8 +115,9 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 # -----------------------------------
 load_dotenv()
 
-if not os.getenv("GOOGLE_API_KEY"):
-    raise RuntimeError("GOOGLE_API_KEY not found. Check .env file.")
+# if not os.getenv("GOOGLE_API_KEY"):
+#     raise RuntimeError("GOOGLE_API_KEY not found. Check .env file.")
+os.environ["GOOGLE_API_KEY"] = "AIzaSyBykSlL6WqgVYS_fp2haA2ix6svyUNOm00"
 
 # -----------------------------------
 # Flask App
