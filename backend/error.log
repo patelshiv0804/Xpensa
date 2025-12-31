@@ -1240,3 +1240,11 @@
 =======
 >>>>>>> f606e638eaf8a32c4395d847cf906909cf84e96f
 >>>>>>> 2ead752e03afbd15ff73eb041f43147378577866
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Database connection failed","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T06:34:19.053Z"}
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Failed to connect to database","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T06:34:19.058Z"}
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Database connection failed","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T07:02:59.110Z"}
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Failed to connect to database","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T07:02:59.115Z"}
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Database connection failed","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T07:07:32.574Z"}
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Failed to connect to database","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T07:07:32.579Z"}
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Database connection failed","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T07:07:36.511Z"}
+{"code":"ECONNREFUSED","fatal":true,"level":"error","message":"Failed to connect to database","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1134:18)\n    at afterConnectMultiple (node:net:1715:7)","timestamp":"2025-12-31T07:07:36.516Z"}
