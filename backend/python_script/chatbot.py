@@ -214,6 +214,14 @@ def agent_chat():
             "error": "Internal server error",
             "details": str(e)
         }), 500
+    
+@app.route("/health", methods=["GET"])
+def health_check():
+    return jsonify({
+        "status": "ok",
+        "service": "xpensa-ai-agent",
+        "model": "gemini-2.5-flash"
+    }), 200
 
 # -----------------------------------
 # Entry Point (Render Safe)
