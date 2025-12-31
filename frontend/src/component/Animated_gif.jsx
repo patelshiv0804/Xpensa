@@ -53,16 +53,11 @@ const Animated_gif = () => {
       const userId = localStorage.getItem("userId") || "anonymous";
 
       const response = await axios.post(
-        "https://xpensa-1.onrender.com/agent/get",
+        "https://xpensa.onrender.com/agent/get",
         {
           userQuery: message,
           expenses: expensesData,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
       );
 
       const responseData = response.data.reply;
