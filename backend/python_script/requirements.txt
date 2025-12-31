@@ -1,5 +1,0 @@
-flask
-langchain
-langchain-google-genai
-tenacity
-python-dotenv

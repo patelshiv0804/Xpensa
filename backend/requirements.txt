@@ -1,0 +1,10 @@
+flask
+python-dotenv
+mysql-connector-python
+pandas
+numpy
+scikit-learn
+xgboost
+langchain
+langchain-google-genai
+tenacity
