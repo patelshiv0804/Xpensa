@@ -106,24 +106,29 @@
 import os
 import json
 from flask import Flask, request, jsonify
-from dotenv import load_dotenv
+from flask_cors import CORS
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 # -----------------------------------
-# Load Environment Variables
+# Google Gemini API Key
 # -----------------------------------
-load_dotenv()
-
-# if not os.getenv("GOOGLE_API_KEY"):
-#     raise RuntimeError("GOOGLE_API_KEY not found. Check .env file.")
+# ⚠️ For production, move this to Render Environment Variables
 os.environ["GOOGLE_API_KEY"] = "AIzaSyBykSlL6WqgVYS_fp2haA2ix6svyUNOm00"
 
 # -----------------------------------
 # Flask App
 # -----------------------------------
 app = Flask(__name__)
+
+# ✅ CORS CONFIGURATION (THIS FIXES YOUR ERROR)
+CORS(
+    app,
+    origins=["https://xpensa-black.vercel.app"],
+    methods=["POST", "OPTIONS"],
+    allow_headers=["Content-Type"]
+)
 
 # -----------------------------------
 # Gemini Flash 2.5
@@ -187,7 +192,6 @@ Answer clearly.
 # -----------------------------------
 @app.route("/agent/get", methods=["POST"])
 def agent_chat():
-
     try:
         data = request.get_json()
 
@@ -201,7 +205,6 @@ def agent_chat():
             return jsonify({"error": "Missing userQuery or expenses"}), 400
 
         prompt = create_optimized_prompt(user_query, expenses)
-
         response = get_llm_response(prompt)
 
         return jsonify({"reply": response.content})
@@ -213,7 +216,7 @@ def agent_chat():
         }), 500
 
 # -----------------------------------
-# Entry Point
+# Entry Point (Render Safe)
 # -----------------------------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
